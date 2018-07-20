@@ -93,12 +93,17 @@ input.btn {
 }
 
 #help-modal .modal-dialog {
-    width: 500px;
+    width: 550px;
+}
+
+#help-modal .modal-body {
+    padding: 20px;
 }
 
 #help-modal img {
+    display: block;
     width: 450px;
-    margin: 0 10px 15px 10px;
+    margin: 15px auto;
 }
 
 #help-modal a {
