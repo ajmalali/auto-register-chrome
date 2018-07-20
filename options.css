@@ -1,0 +1,121 @@
+p {
+    font-size: 15px;
+}
+
+h1.h1 {
+    text-transform: uppercase;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    margin: 0 10px 10px 10px;
+    padding: 10px;
+    font-size: 40px;
+}
+
+h2.display-3 {
+    font-size: 30px;
+    margin-bottom: 0;
+}
+
+li.list-group-item:defined {
+    animation: slide-up 0.5s ease;
+}
+
+div.card {
+    width: 525px;
+    margin: 50px auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+    border-radius: 7px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
+}
+
+input.input-group {
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+    box-shadow: none;
+    border: 1px solid rgba(0 ,0, 0, 0.1);
+}
+
+input.input-group:focus{
+    background-color: white;
+    border: 2px solid #2980b9;
+    outline: none;
+    transition: all 175ms ease;
+}
+
+input.btn {
+    width: 165px;
+    text-align: center;
+    margin-left: 50px;
+    margin-bottom: 5px;
+}
+
+#clear {
+    width: 110px;
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    left: 327px;
+}
+
+#confirm-modal .modal-body {
+    font-size: 110%;
+}
+
+#help {
+    background: none;
+    border: none;
+    margin: 20px;
+    position: fixed;
+    bottom: 0;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+#help:hover {
+    color: #007bff;
+    transition: 0.2s ease-in;
+    cursor: pointer;
+}
+
+#help:focus {
+    outline:0;
+}
+
+#help-modal {
+    justify-content: center;
+}
+
+#help-modal .modal-dialog {
+    width: 500px;
+}
+
+#help-modal img {
+    width: 450px;
+    margin: 0 10px 15px 10px;
+}
+
+#help-modal a {
+    text-decoration: none;
+}
+
+#help-modal p {
+    font-size: 105%;
+}
+
+@keyframes slide-up {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
