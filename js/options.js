@@ -24,9 +24,8 @@ function init() {
         saveCRNS('backupList', backupNode);
     });
 
-    document.querySelector('#confirm-modal button.btn-outline-danger').addEventListener('click', clearAll);
     // Clear all for modal button
-    //$(document).on("click", "#confirm-modal button.btn-outline-danger", clearAll);
+    document.querySelector('#confirm-modal button.btn-outline-danger').addEventListener('click', clearAll);
 }
 
 function createListItem(crn) {
