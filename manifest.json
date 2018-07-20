@@ -20,11 +20,11 @@
   "content_scripts": [
     {
       "js": ["js/content.js"],
-      "matches": ["file:///Users/ajmal/Development/Web%20Dev/Registration%20Autofill/test.html"]
+      "matches": ["file:///Users/ajmal/Development/Web%20Dev/auto-register-chrome/test.html"]
     }
   ],
   "permissions": [
-    "file:///Users/ajmal/Development/Web%20Dev/Registration%20Autofill/test.html",
+    "file:///Users/ajmal/Development/Web%20Dev/auto-register-chrome/test.html",
     "storage",
     "tabs"
   ]
