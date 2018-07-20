@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>AutoRegister</title>
+        <link rel="stylesheet" href="css/options.css">
+        <link rel="stylesheet" href="lib/bootstrap-4.1.2-dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <!-- Clear all modal -->
+        <div class="modal fade" id="confirm-modal" tabindex="-1" role="dialog" aria-labelledby="clearAll" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Confirmation</h4>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to clear everything?
+                    </div>
+                    <div class="modal-footer">
+                        <!--add clear all method-->
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">NO</button>
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">YES</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--How to use modal-->
+        <div class="modal fade" id="help-modal" tabindex="-1" role="dialog" aria-labelledby="help" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">How to use</h3>
+                    </div>
+                    <div class="modal-body">
+                        <h4>Step 1</h4>
+                        <p>
+                            Go to <a href="http://www.ikfupm.com/scheduler/index.php" target="_blank">KFUPM Scheduler</a>
+                            and generate your schedule.
+                        </p>
+                        <h4>Step 2</h4>
+                        <p>Copy your CRNs by clicking on the Copy CRNs button.</p>
+                        <img src="images/CopyCRN.png" alt="Copy CRN screenshot">
+                        <h4>Step 3</h4>
+                        <p>
+                            Paste your CRNs into the input box (no need to edit it). You may also enter each
+                            CRN manually separated by a space or tab, if copy-pasting isn't your thing.
+                        </p>
+                        <img src="images/PasteCRN.png" alt="Paste CRN screenshot">
+                        <h4>Step 4</h4>
+                        <p>
+                            Add your CRNs to <em>Main CRNs</em> if you want them to be registered first. These will be
+                            your primary choice of courses.
+                            <br><br>
+                            Add your CRNs to <em>Backup CRNs</em> if you want them to be registered second in case you expect
+                            your Main CRN course to get closed. Adding Backup CRNs is optional.
+                        </p>
+                        <h4>Step 5</h4>
+                        <p>
+                            When it's time for registration, go to the add/drop classes page. <br><br> When the add/drop class
+                            page opens, this extension will first automatically fill the <em>Main CRNs</em> into the CRN
+                            input box and submit. After the page reloads, the extension will fill the <em>Backup CRNs</em> (if any)
+                            into the CRN input boxes and submit it again. <br><br>You will obviously get a registration
+                            error if one of the <em>Main CRNs</em> gets registered and the <em>Backup CRNs</em> tries to register
+                            the same course. You can safely ignore the error.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">CLOSE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Card div-->
+        <div class="card">
+            <div class="card-body">
+                <!--Title-->
+                <h1 class="h1">AutoRegister</h1>
+
+                <!--Input field and buttons-->
+                <input type="text" class="input-group" id="crn-input" placeholder="Enter / Paste CRNS">
+                <input type="button" class="btn btn-outline-primary" id="add-main" value="ADD MAIN CRN">
+                <input type="button" class="btn btn-outline-secondary" id="add-backup" value="ADD BACKUP CRN">
+
+                <hr>
+
+                <!--Main CRNs div-->
+                <div class="container">
+                    <h2 class="display-3">Main CRNS</h2>
+                    <p><em>(These will be registered first)</em></p>
+                    <ol class="list-group" id="main">
+                        <li class="list-group-item"> This list is empty</li>
+                    </ol>
+                </div>
+
+                <hr>
+
+                <!--Backup CRNs div-->
+                <div class="container">
+                    <h2 class="display-3">Backup CRNS</h2>
+                    <p><em>(These will be registered second)</em></p>
+                    <ol class="list-group" id="backup">
+                        <li class="list-group-item"> This list is empty</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!--Clear button-->
+            <input type="button" class="btn btn-outline-danger" id="clear" value="CLEAR ALL"
+                   data-toggle="modal" data-target="#confirm-modal">
+        </div>
+
+        <!--Help button-->
+        <input type="button" id="help" value="HOW TO USE" data-toggle="modal" data-target="#help-modal">
+
+        <script type="text/javascript" src="lib/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="lib/bootstrap-4.1.2-dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="lib/jquery.bootstrap-growl.min.js"></script>
+        <script type="text/javascript" src="js/options.js"></script>
+    </body>
+</html>
