@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)chrome-extension://bhlplbafjgpkfpmnjgnhcadamddnjfdb/options.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <title>AutoRegister</title>
+        <link rel="stylesheet" href="chrome-extension://bhlplbafjgpkfpmnjgnhcadamddnjfdb/css/options.css">
+        <link rel="stylesheet" href="chrome-extension://bhlplbafjgpkfpmnjgnhcadamddnjfdb/lib/bootstrap-4.1.2-dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <!--Help button-->
+        <input type="button" id="help" value="HOW TO USE">
+
+        <div class="card">
+            <div class="card-body">
+                <!--Title-->
+                <h1 class="h1">AutoRegister</h1>
+
+                <!--Input field and buttons-->
+                <input type="text" class="input-group" id="crn-input" placeholder="Enter / Paste CRNS">
+                <input type="button" class="btn btn-outline-primary" id="add-main" value="ADD MAIN CRN">
+                <input type="button" class="btn btn-outline-secondary" id="add-backup" value="ADD BACKUP CRN">
+
+                <hr>
+
+                <!--Main CRNs div-->
+                <div class="container">
+                    <h2 class="display-3">Main CRNS</h2>
+                    <p><em>(These will be registered first)</em></p>
+                    <ol class="list-group" id="main"><li class="list-group-item">This list is empty</li></ol>
+                </div>
+
+                <hr>
+
+                <!--Backup CRNs div-->
+                <div class="container">
+                    <h2 class="display-3">Backup CRNS</h2>
+                    <p><em>(These will be registered second)</em></p>
+                    <ol class="list-group" id="backup"><li class="list-group-item">This list is empty</li></ol>
+                </div>
+            </div>
+
+            <!--Clear button-->
+            <input type="button" class="btn btn-outline-danger" id="clear" value="CLEAR ALL">
+        </div>
+
+        <script type="text/javascript" src="chrome-extension://bhlplbafjgpkfpmnjgnhcadamddnjfdb/lib/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="chrome-extension://bhlplbafjgpkfpmnjgnhcadamddnjfdb/lib/bootstrap-4.1.2-dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="chrome-extension://bhlplbafjgpkfpmnjgnhcadamddnjfdb/lib/jquery.bootstrap-growl.min.js"></script>
+        <script type="text/javascript" src="chrome-extension://bhlplbafjgpkfpmnjgnhcadamddnjfdb/js/options.js"></script>
+    
+</body></html>
