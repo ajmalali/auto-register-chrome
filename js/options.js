@@ -7,10 +7,9 @@ function init() {
         let backupList = storage.backupList;
         displayCRNS(mainList, mainNode);
         displayCRNS(backupList, backupNode);
+        // Initialize reload
+        chrome.storage.sync.set({'reload': 1});
     });
-
-    // Initialize reload
-    chrome.storage.sync.set({'reload': 1});
 
     document.getElementById('add-main').addEventListener('click', function () {
         // Save to chrome storage
