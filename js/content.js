@@ -1,5 +1,10 @@
 window.onload = function() {
     console.log("Window loaded");
+    /*
+    reload - To check how many times the page has been submitted
+    mainlist - The main CRN list
+    backuplist - The backup CRN list
+     */
     chrome.storage.sync.get(['reload', 'mainList', 'backupList'], function (storage) {
         console.log("In storage get");
         let mainList = storage.mainList;
