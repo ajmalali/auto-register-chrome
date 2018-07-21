@@ -19,8 +19,12 @@
   "web_accessible_resources": ["script.js"],
   "content_scripts": [
     {
-      "js": ["js/content.js"],
-      "matches": ["file:///Users/ajmal/Development/Web%20Dev/auto-register-chrome/test.html"]
+      "matches": ["file:///Users/ajmal/Development/Web%20Dev/auto-register-chrome/test.html"],
+      "js": ["js/crnAutoFill.js"]
+    },
+    {
+      "matches": ["http://ssbweb.kfupm.edu.sa/PROD8/bwskfreg.P_AltPin"],
+      "js": ["js/termAutoFill"]
     }
   ],
   "permissions": [
