@@ -1,4 +1,4 @@
-// TODO: add //http://ssbweb.kfupm.edu.sa/PROD8/bwskfreg.P_AltPin to manifest.json
+// TODO: add registration website to manifest.json
 window.onload = function() {
     console.log("Window loaded");
     /*
