@@ -24,7 +24,7 @@
     },
     {
       "matches": ["http://ssbweb.kfupm.edu.sa/PROD8/bwskfreg.P_AltPin"],
-      "js": ["js/termAutoFill"]
+      "js": ["js/termAutoFill.js"]
     }
   ],
   "permissions": [
