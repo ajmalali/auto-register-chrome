@@ -27,10 +27,10 @@ function init() {
     document.querySelector('#confirm-modal button.btn-outline-danger').addEventListener('click', clearAll);
 }
 
-function createListItem(crn) {
+function createListItem(content) {
     let li = document.createElement('li');
     li.setAttribute('class', 'list-group-item');
-    let text = document.createTextNode(crn);
+    let text = document.createTextNode(content);
     li.appendChild(text);
     return li;
 }
@@ -46,6 +46,14 @@ function hasNumber(string) {
     return /\d/.test(string);
 }
 
+function addRemoveButton(li) {
+    let remove = document.createElement('span');
+    // Change to icon
+    let X = document.createTextNode('X');
+    remove.appendChild(X);
+    li.appendChild(remove);
+}
+
 function displayCRNS(list, node) {
     // check if list is defined
     if (list) {
@@ -53,8 +61,12 @@ function displayCRNS(list, node) {
         if (!hasNumber(node.children[0].textContent)) {
             removeChildren(node);
             // append all crns to the node
+            let listItem;
             list.forEach(function (crn) {
-                node.appendChild(createListItem(crn));
+                // add remove button to each CRN li
+                listItem = createListItem(crn);
+                addRemoveButton(listItem);
+                node.appendChild(listItem);
             });
         } else {
             // append only the new crns to the node
