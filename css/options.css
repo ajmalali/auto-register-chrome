@@ -66,9 +66,17 @@ p.quote {
     color: #d8d8d8;
 }
 
-li.list-group-item span {
-    text-align: end;
+li.list-group-item img {
     float: right;
+    width: 13px;
+    opacity: 0.2;
+    transform: translateY(5px);
+}
+
+li.list-group-item img:hover {
+    opacity: 1;
+    transition: 0.3s;
+    cursor: pointer;
 }
 
 img.social {
