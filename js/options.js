@@ -148,7 +148,7 @@ function notify(message, options) {
 function isValid(value) {
     // check if the string contains one or more of the below characters
     // (using regex will slow down performance a bit)
-    let regex = /[a-zA-Z!@#$%^&*.]+/g;
+    let regex = /[a-zA-Z!@#$%^&*.]+/;
     return !regex.test(value);
 }
 
