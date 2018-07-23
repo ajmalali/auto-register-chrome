@@ -54,20 +54,19 @@ function addRemoveButton(element) {
     removeButton.setAttribute('src', 'icons/clear-button.png');
     removeButton.setAttribute('title', 'Remove CRN');
     removeButton.addEventListener('click', function () {
-        removeCRN(this);
+        removeCRN(this.parentNode);
     });
     element.appendChild(removeButton);
 }
 
 function removeCRN(element) {
-    let node = element.parentNode.parentNode;
-    let li = element.parentNode;
-    let index = Array.prototype.indexOf.call(node.childNodes, li);
+    let node = element.parentNode;
+    let index = Array.prototype.indexOf.call(node.childNodes, element);
 
     if (node.id === 'main') {
-        removeFromList(node, li, 'mainList', index);
+        removeFromList(node, element, 'mainList', index);
     } else {
-        removeFromList(node, li, 'backupList', index);
+        removeFromList(node, element, 'backupList', index);
     }
 }
 
@@ -152,40 +151,42 @@ function isValid(value) {
     return !regex.test(value);
 }
 
+// TODO: update max list length
 function addToList(oldList = [], newList) {
     let addedOption = {type: 'success', delay: 1000};
     let invalidOption = {type: 'danger', delay: 3000, width: 'auto'};
     let maxLength = 10;
+
     for (let i = 0; i < newList.length; i++) {
-        if(oldList.length < maxLength) {
+        if (oldList.length < maxLength) {
             oldList.push(newList[i]);
             notify(newList[i] + ' added', addedOption);
         } else {
             notify('You cannot register more than ' + maxLength + ' CRNs', invalidOption);
-            break;
+            return oldList;
         }
     }
+
     // changes are made to oldList
-    return oldList;
+        return oldList;
 }
 
-// TODO: update max list length
 function saveCRNS(list, node) {
     let input = document.getElementById('crn-input');
-    let updatedOption = {type: 'info', delay: 1000};
     let invalidOption = {type: 'danger', delay: 2000, width: 'auto'};
     let noInputOption = {type: 'info', delay: 2000, width: 'auto'};
+
     // If there is input
     if (input.value) {
         // Check if input is valid
         if (isValid(input.value)) {
+            // match everything that is not whitespace and convert to array
             let newList = input.value.match(/\S+/g);
 
             chrome.storage.sync.get(list, function (storage) {
                 // update existing list if any
                 if (storage[list] && storage[list].length > 0) {
                     newList = addToList(storage[list], newList);
-                    notify('CRNs updated', updatedOption);
                 } else {
                     newList = addToList(undefined, newList);
                 }
