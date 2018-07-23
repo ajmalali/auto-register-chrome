@@ -7,8 +7,8 @@ function init() {
         let backupList = storage.backupList;
         displayCRNS(mainList, mainNode);
         displayCRNS(backupList, backupNode);
-        // Initialize reload
-        chrome.storage.sync.set({'reload': 1});
+        // Initialize submit
+        chrome.storage.sync.set({'submit': 1});
     });
 
     document.getElementById('add-main').addEventListener('click', function () {
@@ -52,6 +52,7 @@ function hasNumber(string) {
 function addRemoveButton(li) {
     let removeButton = document.createElement('img');
     removeButton.setAttribute('src', 'icons/clear-button.png');
+    removeButton.setAttribute('title', 'Remove CRN');
     removeButton.addEventListener('click', function () {
         removeCRN(this);
     });
@@ -139,8 +140,8 @@ function clearAll() {
     // Set empty list message
     main.appendChild(createListItem('This list is empty'));
     backup.appendChild(createListItem('This list is empty'));
-    // Set reload to 1
-    chrome.storage.sync.set({'reload': 1});
+    // Set submit to 1
+    chrome.storage.sync.set({'submit': 1});
     // Clear chrome storage
     chrome.storage.sync.clear(function () {
         notify("Everything cleared", {type: 'danger', delay: 2000})

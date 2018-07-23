@@ -2,29 +2,29 @@
 window.onload = function() {
     console.log("Window loaded");
     /*
-    reload - To check how many times the page has been submitted
+    submit - To check how many times the page has been submitted
     mainlist - The main CRN list
     backuplist - The backup CRN list
      */
-    chrome.storage.sync.get(['reload', 'mainList', 'backupList'], function (storage) {
+    chrome.storage.sync.get(['submit', 'mainList', 'backupList'], function (storage) {
         console.log("In storage get");
         let mainList = storage.mainList;
         let backupList = storage.backupList;
-        let reload = storage.reload;
+        let submit = storage.submit;
         // 1 == main CRNs
-        if(reload === 1) {
-            console.log("reload 1");
-            autoFill(mainList, reload);
+        if(submit === 1) {
+            console.log("submit 1");
+            autoFill(mainList, submit);
         }
         // 2 == backup CRNs
-        else if (reload === 2) {
-            console.log("reload 2");
-            autoFill(backupList, reload);
+        else if (submit === 2) {
+            console.log("submit 2");
+            autoFill(backupList, submit);
         }
     });
 };
 
-function autoFill(list, reload) {
+function autoFill(list, submit) {
     // Check if list is not undefined and not empty
     if(list && list.length > 0) {
         let id = "";
@@ -33,14 +33,14 @@ function autoFill(list, reload) {
             document.getElementById(id).value = list[i];
         }
         
-        autoSubmit(reload);
+        autoSubmit(submit);
     }
 }
 
-function autoSubmit(reload) {
-    reload++; // Update reload
-    chrome.storage.sync.set({'reload': reload}, function () {
-        alert((reload-1) + " times submitted");
+function autoSubmit(submit) {
+    submit++; // Update submit
+    chrome.storage.sync.set({'submit': submit}, function () {
+        alert((submit-1) + " times submitted");
         document.getElementById('REG_BTN').click();
     });
 }

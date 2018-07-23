@@ -12,7 +12,7 @@ chrome.browserAction.onClicked.addListener(function () {
             if(!tab.active) {
                // Set options page to active
                chrome.tabs.update(tab.id, {active: true});
-               chrome.storage.sync.set({'reload': 1});
+               chrome.storage.sync.set({'submit': 1});
             }
          }
       });
