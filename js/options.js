@@ -152,30 +152,44 @@ function isValid(value) {
     return !regex.test(value);
 }
 
+function addToList(oldList = [], newList) {
+    let addedOption = {type: 'success', delay: 1000};
+    let invalidOption = {type: 'danger', delay: 3000, width: 'auto'};
+    let maxLength = 10;
+    for (let i = 0; i < newList.length; i++) {
+        if(oldList.length < maxLength) {
+            oldList.push(newList[i]);
+            notify(newList[i] + ' added', addedOption);
+        } else {
+            notify('You cannot register more than ' + maxLength + ' CRNs', invalidOption);
+            break;
+        }
+    }
+    // changes are made to oldList
+    return oldList;
+}
+
+// TODO: update max list length
 function saveCRNS(list, node) {
     let input = document.getElementById('crn-input');
-    let addedOption = {type: 'success', delay: 1000};
     let updatedOption = {type: 'info', delay: 1000};
     let invalidOption = {type: 'danger', delay: 2000, width: 'auto'};
     let noInputOption = {type: 'info', delay: 2000, width: 'auto'};
-    let newList;
     // If there is input
     if (input.value) {
         // Check if input is valid
         if (isValid(input.value)) {
             let newList = input.value.match(/\S+/g);
 
-            newList.forEach(function (crn) {
-                notify(crn + " added", addedOption);
-            });
-            // update existing list if any
             chrome.storage.sync.get(list, function (storage) {
-                // If list is not empty
+                // update existing list if any
                 if (storage[list] && storage[list].length > 0) {
-                    newList = storage[list].concat(newList);
+                    newList = addToList(storage[list], newList);
                     notify('CRNs updated', updatedOption);
+                } else {
+                    newList = addToList(undefined, newList);
                 }
-                //Store new lists
+                // Store new/updated lists
                 chrome.storage.sync.set({[list]: newList}, function () {
                     displayCRNS(newList, node);
                 });
