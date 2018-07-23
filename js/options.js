@@ -11,6 +11,10 @@ function init() {
         chrome.storage.sync.set({'submit': 1});
     });
 
+    chrome.storage.sync.get(function (storage) {
+       console.log(storage);
+    });
+
     document.getElementById('add-main').addEventListener('click', function () {
         // Save to chrome storage
         let mainNode = document.getElementById('main');
@@ -35,7 +39,7 @@ function createListItem(content) {
     return li;
 }
 
-function updateCRNS(list, node) {
+function appendCRN(list, node) {
     let index = node.children.length;
     let listItem;
     for (let i = index; i < list.length; i++) {
@@ -49,53 +53,41 @@ function hasNumber(string) {
     return /\d/.test(string);
 }
 
-function addRemoveButton(li) {
+function addRemoveButton(element) {
     let removeButton = document.createElement('img');
     removeButton.setAttribute('src', 'icons/clear-button.png');
     removeButton.setAttribute('title', 'Remove CRN');
     removeButton.addEventListener('click', function () {
         removeCRN(this);
     });
-    li.appendChild(removeButton);
+    element.appendChild(removeButton);
 }
 
-// TODO: refactor
 function removeCRN(element) {
-    let list = element.parentNode.parentNode;
+    let node = element.parentNode.parentNode;
     let li = element.parentNode;
-    let index = Array.prototype.indexOf.call(list.childNodes, li);
-    let updatedList;
+    let index = Array.prototype.indexOf.call(node.childNodes, li);
 
-    if (list.id === 'main') {
-        chrome.storage.sync.get('mainList', function (storage) {
-            updatedList = storage.mainList;
-            updatedList.splice(index, 1);
-            console.log(updatedList);
-            chrome.storage.sync.set({'mainList': updatedList}, function () {
-                list.removeChild(li);
-                notify(li.textContent + " removed", {type: 'danger', delay: 2000});
-                if (!list.hasChildNodes()) {
-                    list.appendChild(createListItem('This list is empty'));
-                    notify('Main list is now empty');
-                }
-            });
-        });
+    if (node.id === 'main') {
+        removeFromList(node, li, 'mainList', index);
     } else {
-        chrome.storage.sync.get('backupList', function (storage) {
-            updatedList = storage.backupList;
-            updatedList.splice(index, 1);
-            console.log(updatedList);
-            chrome.storage.sync.set({'backupList': updatedList}, function () {
-                list.removeChild(li);
-                notify(li.textContent + " removed", {type: 'danger', delay: 2000});
-                if (!list.hasChildNodes()) {
-                    list.appendChild(createListItem('This list is empty'));
-                    notify('Backup list is now empty');
-                }
-            });
-        });
+        removeFromList(node, li, 'backupList', index);
     }
+}
 
+function removeFromList(node, element, list, index) {
+    let options = {type: 'danger', delay: 1300};
+    chrome.storage.sync.get(list, function (storage) {
+        let updatedList = storage[list];
+        updatedList.splice(index, 1);
+        chrome.storage.sync.set({[list]: updatedList}, function () {
+            node.removeChild(element);
+            notify(element.textContent + " removed", options);
+            if (!node.hasChildNodes()) {
+                node.appendChild(createListItem('This list is empty'));
+            }
+        });
+    });
 }
 
 function displayCRNS(list, node) {
@@ -114,7 +106,7 @@ function displayCRNS(list, node) {
             });
         } else {
             // append only the new crns to the node
-            updateCRNS(list, node);
+            appendCRN(list, node);
         }
     } else {
         removeChildren(node);
@@ -158,7 +150,7 @@ function notify(message, options) {
 
 function isValid(value) {
     // check if the string contains one or more of the below characters
-    // (using regex will slow down performance)
+    // (using regex will slow down performance a bit)
     let regex = /[a-zA-Z!@#$%^&*.]+/g;
     return !regex.test(value);
 }
