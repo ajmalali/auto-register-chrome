@@ -11,10 +11,6 @@ function init() {
         chrome.storage.sync.set({'submit': 1});
     });
 
-    chrome.storage.sync.get(function (storage) {
-       console.log(storage);
-    });
-
     document.getElementById('add-main').addEventListener('click', function () {
         // Save to chrome storage
         let mainNode = document.getElementById('main');
@@ -132,12 +128,13 @@ function clearAll() {
     // Set empty list message
     main.appendChild(createListItem('This list is empty'));
     backup.appendChild(createListItem('This list is empty'));
-    // Set submit to 1
-    chrome.storage.sync.set({'submit': 1});
     // Clear chrome storage
     chrome.storage.sync.clear(function () {
         notify("Everything cleared", {type: 'danger', delay: 2000})
     });
+
+    // Set submit to 1
+    chrome.storage.sync.set({'submit': 1});
 }
 
 function clearInput() {
@@ -155,54 +152,42 @@ function isValid(value) {
     return !regex.test(value);
 }
 
-// TODO: refactor
 function saveCRNS(list, node) {
     let input = document.getElementById('crn-input');
+    let addedOption = {type: 'success', delay: 1000};
+    let updatedOption = {type: 'info', delay: 1000};
+    let invalidOption = {type: 'danger', delay: 2000, width: 'auto'};
+    let noInputOption = {type: 'info', delay: 2000, width: 'auto'};
     let newList;
     // If there is input
     if (input.value) {
         // Check if input is valid
         if (isValid(input.value)) {
             let newList = input.value.match(/\S+/g);
-            if (list === 'mainList') {
-                newList.forEach(function (crn) {
-                    notify(crn + " added to main", {type: 'success', delay: 2000});
+
+            newList.forEach(function (crn) {
+                notify(crn + " added", addedOption);
+            });
+            // update existing list if any
+            chrome.storage.sync.get(list, function (storage) {
+                // If list is not empty
+                if (storage[list] && storage[list].length > 0) {
+                    newList = storage[list].concat(newList);
+                    notify('CRNs updated', updatedOption);
+                }
+                //Store new lists
+                chrome.storage.sync.set({[list]: newList}, function () {
+                    displayCRNS(newList, node);
                 });
-                chrome.storage.sync.get('mainList', function (storage) {
-                    // If list is not empty
-                    if (storage.mainList) {
-                        newList = storage.mainList.concat(newList);
-                        notify('Main CRNs updated', {type: 'info', delay: 2000});
-                    }
-                    //Store new lists
-                    chrome.storage.sync.set({'mainList': newList}, function () {
-                        displayCRNS(newList, node);
-                    });
-                });
-            } else {
-                newList.forEach(function (crn) {
-                    notify(crn + " added to backup", {type: 'success', delay: 2000, width: 260});
-                });
-                chrome.storage.sync.get('backupList', function (storage) {
-                    // If list is not empty
-                    if (storage.backupList) {
-                        newList = storage.backupList.concat(newList);
-                        notify('Backup CRNs updated', {type: 'info', delay: 2000, width: 260});
-                    }
-                    //Store new lists
-                    chrome.storage.sync.set({'backupList': newList}, function () {
-                        displayCRNS(newList, node);
-                    });
-                });
-            }
+            });
         } else {
             // Invalid input notification
             clearInput();
-            notify('Please enter a valid CRN', {type: 'danger', delay: 2000, width: 'auto'});
+            notify('Please enter a valid CRN', invalidOption);
         }
     } else {
         // No input notification
-        notify('Please enter a CRN', {type: 'info', delay: 2000, width: 'auto'});
+        notify('Please enter a CRN', noInputOption);
     }
     // Clear input
     clearInput();
