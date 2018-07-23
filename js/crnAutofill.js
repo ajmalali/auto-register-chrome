@@ -11,14 +11,12 @@ window.onload = function() {
         let mainList = storage.mainList;
         let backupList = storage.backupList;
         let submit = storage.submit;
-        // 1 == main CRNs
+        // 1 - main CRNs
         if(submit === 1) {
-            console.log("submit 1");
             autoFill(mainList, submit);
         }
-        // 2 == backup CRNs
+        // 2 - backup CRNs
         else if (submit === 2) {
-            console.log("submit 2");
             autoFill(backupList, submit);
         }
     });
