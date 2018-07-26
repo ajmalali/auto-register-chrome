@@ -8,7 +8,7 @@ function init() {
         displayCRNS(mainList, mainNode);
         displayCRNS(backupList, backupNode);
     });
-    
+
     // Submit - number of times registration page has to be submitted
     chrome.storage.sync.set({'submit': 1});
 
