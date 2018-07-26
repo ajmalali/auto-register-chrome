@@ -1,25 +1,23 @@
 function init() {
-    // Display entered CRNs
+    let mainNode = document.getElementById('main');
+    let backupNode = document.getElementById('backup');
+    // Display saved CRNs
+    // Submit - number of times registration page has to be submitted
     chrome.storage.sync.get(['mainList', 'backupList'], function (storage) {
-        let mainNode = document.getElementById('main');
-        let backupNode = document.getElementById('backup');
         let mainList = storage.mainList;
         let backupList = storage.backupList;
         displayCRNS(mainList, mainNode);
         displayCRNS(backupList, backupNode);
-        // Initialize submit
         chrome.storage.sync.set({'submit': 1});
     });
 
     document.getElementById('add-main').addEventListener('click', function () {
         // Save to chrome storage
-        let mainNode = document.getElementById('main');
         saveCRNS('mainList', mainNode);
     });
 
     document.getElementById('add-backup').addEventListener('click', function () {
         // Save to chrome storage
-        let backupNode = document.getElementById('backup');
         saveCRNS('backupList', backupNode);
     });
 
