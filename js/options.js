@@ -2,14 +2,15 @@ function init() {
     let mainNode = document.getElementById('main');
     let backupNode = document.getElementById('backup');
     // Display saved CRNs
-    // Submit - number of times registration page has to be submitted
     chrome.storage.sync.get(['mainList', 'backupList'], function (storage) {
         let mainList = storage.mainList;
         let backupList = storage.backupList;
         displayCRNS(mainList, mainNode);
         displayCRNS(backupList, backupNode);
-        chrome.storage.sync.set({'submit': 1});
     });
+    
+    // Submit - number of times registration page has to be submitted
+    chrome.storage.sync.set({'submit': 1});
 
     document.getElementById('add-main').addEventListener('click', function () {
         // Save to chrome storage
