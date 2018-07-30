@@ -1,4 +1,4 @@
 document.getElementById('REG_BTN').addEventListener('click', function () {
-    window.location.submit();
+    location.reload();
     console.log('RELOADED');
 });
