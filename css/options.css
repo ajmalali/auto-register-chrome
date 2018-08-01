@@ -22,8 +22,10 @@ h2.display-3 {
     font-size: 30px;
     margin-bottom: 0;
 }
-ol.list-group {
-    transition: max-height 0.5s ease;
+
+h4.display-4 {
+    font-size: 25px;
+    font-weight: 300;
 }
 
 .add {
@@ -145,12 +147,8 @@ img.social:hover {
     outline:0;
 }
 
-#help-modal {
-    justify-content: center;
-}
-
 #help-modal .modal-dialog {
-    width: 550px;
+    width: 35%;
 }
 
 #help-modal .modal-body {
@@ -161,6 +159,7 @@ img.social:hover {
     display: block;
     width: 450px;
     margin: 15px auto;
+    max-width: 100%;
 }
 
 #help-modal a {
@@ -169,6 +168,7 @@ img.social:hover {
 
 #help-modal p {
     font-size: 105%;
+    padding-left: 10px;
 }
 
 @keyframes slide-in {
