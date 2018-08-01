@@ -28,7 +28,7 @@ function init() {
 
 function createListItem(content) {
     let li = document.createElement('li');
-    li.setAttribute('class', 'list-group-item');
+    li.setAttribute('class', 'list-group-item add');
     let text = document.createTextNode(content);
     li.appendChild(text);
     return li;
@@ -53,32 +53,36 @@ function addRemoveButton(element) {
     removeButton.setAttribute('src', 'icons/clear-button.png');
     removeButton.setAttribute('title', 'Remove CRN');
     removeButton.addEventListener('click', function () {
-        removeCRN(this.parentNode);
+        element.classList.add('remove');
+        // remove element after the animation ends
+        element.addEventListener('animationend', function () {
+            removeCRN(element);
+        });
     });
     element.appendChild(removeButton);
 }
 
 function removeCRN(element) {
-    let node = element.parentNode;
-    let index = Array.prototype.indexOf.call(node.childNodes, element);
+    let parent = element.parentNode;
+    let index = Array.prototype.indexOf.call(parent.childNodes, element);
 
-    if (node.id === 'main') {
-        removeFromList(node, element, 'mainList', index);
+    if (parent.id === 'main') {
+        removeFromList(parent, element, 'mainList', index);
     } else {
-        removeFromList(node, element, 'backupList', index);
+        removeFromList(parent, element, 'backupList', index);
     }
 }
 
-function removeFromList(node, element, list, index) {
+function removeFromList(parent, element, list, index) {
     let options = {type: 'danger', delay: 1300};
     chrome.storage.sync.get(list, function (storage) {
         let updatedList = storage[list];
         updatedList.splice(index, 1);
         chrome.storage.sync.set({[list]: updatedList}, function () {
-            node.removeChild(element);
+            parent.removeChild(element);
             notify(element.textContent + " removed", options);
-            if (!node.hasChildNodes()) {
-                node.appendChild(createListItem('This list is empty'));
+            if (!parent.hasChildNodes()) {
+                parent.appendChild(createListItem('This list is empty'));
             }
         });
     });

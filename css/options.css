@@ -2,7 +2,6 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: Roboto, sans-serif;
 }
 
 p {
@@ -23,9 +22,16 @@ h2.display-3 {
     font-size: 30px;
     margin-bottom: 0;
 }
+ol.list-group {
+    transition: max-height 0.5s ease;
+}
 
-li.list-group-item:defined {
+.add {
     animation: slide-in 0.5s ease;
+}
+
+.remove {
+    animation: slide-out 0.5s ease forwards;
 }
 
 div.card {
@@ -169,11 +175,22 @@ img.social:hover {
     0% {
         opacity: 0;
         transform: translateX(-50px);
-        animation-delay: 0.3s;
     }
 
     100% {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+@keyframes slide-out {
+    0% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(50px);
     }
 }
