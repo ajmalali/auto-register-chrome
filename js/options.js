@@ -148,10 +148,30 @@ function notify(message, options) {
 }
 
 function isValid(value) {
-    // check if the string contains one or more of the below characters
-    // (using regex will slow down performance a bit)
+    let valid = false;
     let regex = /[a-zA-Z!@#$%^&*.]+/;
-    return !regex.test(value);
+    let invalidOption = {type: 'danger', delay: 2000, width: 'auto'};
+    let noInputOption = {type: 'info', delay: 2000, width: 'auto'};
+
+    // check if there is input
+    if(value) {
+        // check if the string contains one or more of the above characters
+        // (using regex will slow down performance a bit)
+        if (!regex.test(value)) {
+            valid = true;
+        } else {
+            // Invalid input notification
+            clearInput();
+            notify('Please enter a valid CRN', invalidOption);
+            valid = false;
+        }
+    } else {
+        // No input notification
+        notify('Please enter a CRN', noInputOption);
+        valid = false;
+    }
+
+    return valid;
 }
 
 // TODO: update max list length
@@ -171,41 +191,29 @@ function addToList(oldList = [], newList) {
     }
 
     // changes are made to oldList
-        return oldList;
+    return oldList;
 }
 
 function saveCRNS(list, node) {
-    let input = document.getElementById('crn-input');
-    let invalidOption = {type: 'danger', delay: 2000, width: 'auto'};
-    let noInputOption = {type: 'info', delay: 2000, width: 'auto'};
+    let input = document.getElementById('crn-input').value;
 
-    // If there is input
-    if (input.value) {
-        // Check if input is valid
-        if (isValid(input.value)) {
-            // match everything that is not whitespace and convert to array
-            let newList = input.value.match(/\S+/g);
+    if (isValid(input)) {
+        // match everything that is not whitespace and convert to array
+        let newList = input.match(/\S+/g);
 
-            chrome.storage.sync.get(list, function (storage) {
-                // update existing list if any
-                if (storage[list] && storage[list].length > 0) {
-                    newList = addToList(storage[list], newList);
-                } else {
-                    newList = addToList(undefined, newList);
-                }
-                // Store new/updated lists
-                chrome.storage.sync.set({[list]: newList}, function () {
-                    displayCRNS(newList, node);
-                });
+        chrome.storage.sync.get(list, function (storage) {
+            // update existing list if any
+            if (storage[list] && storage[list].length > 0) {
+                newList = addToList(storage[list], newList);
+            } else {
+                // add to new list
+                newList = addToList(undefined, newList);
+            }
+            // Store new/updated lists
+            chrome.storage.sync.set({[list]: newList}, function () {
+                displayCRNS(newList, node);
             });
-        } else {
-            // Invalid input notification
-            clearInput();
-            notify('Please enter a valid CRN', invalidOption);
-        }
-    } else {
-        // No input notification
-        notify('Please enter a CRN', noInputOption);
+        });
     }
     // Clear input
     clearInput();
