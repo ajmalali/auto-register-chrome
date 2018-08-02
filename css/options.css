@@ -29,11 +29,11 @@ h4.display-4 {
 }
 
 .add {
-    animation: slide-in 0.5s ease;
+    animation: slide-in 0.4s ease;
 }
 
 .remove {
-    animation: slide-out 0.5s ease forwards;
+    animation: slide-out 0.3s ease forwards;
 }
 
 div.card {
