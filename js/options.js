@@ -56,13 +56,13 @@ function addRemoveButton(element) {
         element.classList.add('remove');
         // remove element after the animation ends
         element.addEventListener('animationend', function () {
-            removeCRN(element);
+            removeFromNode(element);
         });
     });
     element.appendChild(removeButton);
 }
 
-function removeCRN(element) {
+function removeFromNode(element) {
     let parent = element.parentNode;
     let index = Array.prototype.indexOf.call(parent.childNodes, element);
 
