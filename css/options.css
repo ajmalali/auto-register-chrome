@@ -9,26 +9,6 @@ p {
     font-size: 15px;
 }
 
-h1.h1 {
-    text-transform: uppercase;
-    text-align: center;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-    margin: 0 10px 10px 10px;
-    padding: 10px;
-    font-size: 40px;
-    font-weight: normal;
-}
-
-h2.display-3 {
-    font-size: 30px;
-    margin-bottom: 0;
-}
-
-h4.display-4 {
-    font-size: 25px;
-    font-weight: 300;
-}
-
 .add {
     animation: slide-in 0.4s ease;
 }
@@ -37,12 +17,11 @@ h4.display-4 {
     animation: slide-out 0.3s ease forwards;
 }
 
-div.card {
-    width: 525px;
-    margin: 50px auto;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
-    transition: 0.3s;
-    border-radius: 7px;
+.add-btn {
+    width: 165px;
+    text-align: center;
+    margin-left: 55px;
+    margin-bottom: 5px;
 }
 
 .hide {
@@ -79,6 +58,34 @@ div.card {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
 }
 
+h1.h1 {
+    text-transform: uppercase;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    margin: 0 10px 10px 10px;
+    padding: 10px;
+    font-size: 40px;
+    font-weight: normal;
+}
+
+h2.display-3 {
+    font-size: 30px;
+    margin-bottom: 0;
+}
+
+h4.display-4 {
+    font-size: 25px;
+    font-weight: 300;
+}
+
+div.card {
+    width: 525px;
+    margin: 50px auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+    border-radius: 7px;
+}
+
 input.input-group {
     margin: 20px auto;
     padding: 10px;
@@ -93,13 +100,6 @@ input.input-group:focus{
     border: 2px solid #2980b9;
     outline: none;
     transition: all 175ms ease;
-}
-
-.add-btn {
-    width: 165px;
-    text-align: center;
-    margin-left: 55px;
-    margin-bottom: 5px;
 }
 
 p.quote {
