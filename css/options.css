@@ -44,6 +44,35 @@ div.card {
     border-radius: 7px;
 }
 
+.hide {
+    display: none;
+}
+
+.hide-btn:after {
+    content: "SHOW";
+    color: black;
+}
+
+.hide-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    float: right;
+    margin: 5px auto;
+    opacity: 0.5;
+    transition: 0.3s ease-in;
+}
+
+.hide-btn:hover {
+    opacity: 1.0;
+    transition: 0.3s ease-in;
+    cursor: pointer;
+}
+
+.hide-btn:focus {
+    outline:0;
+}
+
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
 }
@@ -82,6 +111,7 @@ li.list-group-item img {
     width: 13px;
     opacity: 0.2;
     transform: translateY(5px);
+    transition: 0.3s;
 }
 
 li.list-group-item img:hover {
