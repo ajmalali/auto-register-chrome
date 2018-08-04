@@ -87,9 +87,9 @@
                 <h1 class="h1">AutoRegister</h1>
 
                 <!--Input field and buttons-->
-                <input type="text" class="input-group" id="crn-input" placeholder="Enter / Paste CRNS">
-                <input type="button" class="btn btn-outline-primary" id="add-main" value="ADD MAIN CRN">
-                <input type="button" class="btn btn-outline-secondary" id="add-backup" value="ADD BACKUP CRN">
+                <input type="text" class="input-group" id="crn-input" placeholder="Enter/Paste CRNS">
+                <input type="button" class="btn btn-outline-primary add-btn" id="add-main" value="ADD MAIN CRN">
+                <input type="button" class="btn btn-outline-secondary add-btn" id="add-backup" value="ADD BACKUP CRN">
 
                 <hr>
 
@@ -117,11 +117,10 @@
                     </div>
                 </div>
                 <hr>
+                <!--Clear button-->
+                <input type="button" class="btn btn-outline-danger" id="clear" value="CLEAR ALL"
+                       data-toggle="modal" data-target="#confirm-modal">
             </div>
-
-            <!--Clear button-->
-            <input type="button" class="btn btn-outline-danger" id="clear" value="CLEAR ALL"
-                   data-toggle="modal" data-target="#confirm-modal">
         </div>
 
         <p class="quote"><em>May the odds be ever in your favor</em></p>

@@ -95,10 +95,10 @@ input.input-group:focus{
     transition: all 175ms ease;
 }
 
-input.btn {
+.add-btn {
     width: 165px;
     text-align: center;
-    margin-left: 50px;
+    margin-left: 55px;
     margin-bottom: 5px;
 }
 
@@ -148,9 +148,9 @@ img.social:hover {
 #clear {
     width: 110px;
     text-align: center;
-    margin-bottom: 20px;
-    position: relative;
-    left: 327px;
+    margin-top: 5px;
+    margin-right: 15px;
+    float: right;
 }
 
 #confirm-modal .modal-body {
