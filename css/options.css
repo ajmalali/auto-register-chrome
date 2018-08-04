@@ -2,6 +2,7 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
+    font-family: 'Roboto', sans-serif !important;
 }
 
 p {
@@ -44,6 +45,36 @@ div.card {
     border-radius: 7px;
 }
 
+.hide {
+    display: none;
+}
+
+.hide-btn:after {
+    content: "SHOW";
+    color: black;
+}
+
+.hide-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    float: right;
+    margin: 5px auto;
+    opacity: 0.5;
+    transition: 0.3s ease-in;
+}
+
+.hide-btn:hover {
+    opacity: 1.0;
+    transition: 0.3s ease-in;
+    cursor: pointer;
+}
+
+.hide-btn:focus {
+    outline:0;
+}
+
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
 }
@@ -64,10 +95,10 @@ input.input-group:focus{
     transition: all 175ms ease;
 }
 
-input.btn {
+.add-btn {
     width: 165px;
     text-align: center;
-    margin-left: 50px;
+    margin-left: 55px;
     margin-bottom: 5px;
 }
 
@@ -82,6 +113,7 @@ li.list-group-item img {
     width: 13px;
     opacity: 0.2;
     transform: translateY(5px);
+    transition: 0.3s;
 }
 
 li.list-group-item img:hover {
@@ -116,9 +148,9 @@ img.social:hover {
 #clear {
     width: 110px;
     text-align: center;
-    margin-bottom: 20px;
-    position: relative;
-    left: 327px;
+    margin-top: 5px;
+    margin-right: 15px;
+    float: right;
 }
 
 #confirm-modal .modal-body {

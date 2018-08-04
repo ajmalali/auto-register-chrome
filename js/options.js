@@ -1,3 +1,11 @@
+function updateButtonText(button) {
+    if(button.value === 'HIDE') {
+        button.setAttribute('value', 'SHOW');
+    } else {
+        button.setAttribute('value', 'HIDE');
+    }
+}
+
 function init() {
     let mainNode = document.getElementById('main');
     let backupNode = document.getElementById('backup');
@@ -20,6 +28,14 @@ function init() {
     document.getElementById('add-backup').addEventListener('click', function () {
         // Save to chrome storage
         saveCRNS('backupList', backupNode);
+    });
+
+    let hideButtons = document.querySelectorAll(".container input[type='button']");
+    hideButtons.forEach(function (button) {
+       button.addEventListener('click', function () {
+           this.parentElement.parentElement.nextElementSibling.classList.toggle('hide');
+           updateButtonText(this);
+       });
     });
 
     // Clear all for modal button
