@@ -1,11 +1,3 @@
-function updateButtonText(button) {
-    if(button.value === 'HIDE') {
-        button.setAttribute('value', 'SHOW');
-    } else {
-        button.setAttribute('value', 'HIDE');
-    }
-}
-
 function init() {
     let mainNode = document.getElementById('main');
     let backupNode = document.getElementById('backup');
@@ -30,16 +22,27 @@ function init() {
         saveCRNS('backupList', backupNode);
     });
 
+    // Events for Hide/Show buttons
     let hideButtons = document.querySelectorAll(".container input[type='button']");
     hideButtons.forEach(function (button) {
        button.addEventListener('click', function () {
-           this.parentElement.parentElement.nextElementSibling.classList.toggle('hide');
+           // input(button) -> span -> h2 -> div.crn-list
+           let div = this.parentElement.parentElement.nextElementSibling;
+           div.classList.toggle('hide');
            updateButtonText(this);
        });
     });
 
     // Clear all for modal button
     document.querySelector('#confirm-modal button.btn-outline-danger').addEventListener('click', clearAll);
+}
+
+function updateButtonText(button) {
+    if(button.value === 'HIDE') {
+        button.setAttribute('value', 'SHOW');
+    } else {
+        button.setAttribute('value', 'HIDE');
+    }
 }
 
 function createListItem(content) {
