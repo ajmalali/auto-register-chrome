@@ -166,12 +166,10 @@ img.social:hover {
     font-family: inherit;
     font-weight: 500;
     font-size: 18px;
-    transition: 0.3s ease-out;
 }
 
 #help:hover {
     color: #0255db;
-    transition: 0.3s ease-in;
     cursor: pointer;
 }
 
