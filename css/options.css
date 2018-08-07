@@ -27,8 +27,8 @@ hr {
 
 .add-btn {
     width: 140px;
-    text-align: center;
     margin-top: 15px;
+    /*transform: translateX(156px);*/
 }
 
 .hide {
@@ -87,7 +87,7 @@ h4.display-4 {
 
 div.card {
     width: 525px;
-    margin: 50px auto;
+    margin: 30px auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
     transition: 0.3s;
     border-radius: 7px;
