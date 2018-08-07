@@ -9,6 +9,10 @@ html, body {
     font-size: 15px;
 }
 
+/*.container {*/
+    /*display: none;*/
+/*}*/
+
 .add {
     animation: slide-in 0.4s ease;
 }
@@ -107,6 +111,10 @@ p.quote {
     color: #d8d8d8;
 }
 
+ol.list-group {
+    margin-top: 10px;
+}
+
 li.list-group-item img {
     float: right;
     width: 13px;
@@ -145,7 +153,7 @@ img.social:hover {
 }
 
 #clear {
-    width: 120px;
+    width: 125px;
     text-align: center;
     margin-right: 15px;
     float: right;
@@ -153,6 +161,11 @@ img.social:hover {
 
 #confirm-modal .modal-body {
     font-size: 110%;
+}
+
+#add-more {
+    margin-left: 15px;
+    width: 140px;
 }
 
 #help {

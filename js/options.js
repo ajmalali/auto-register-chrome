@@ -1,27 +1,33 @@
 function init() {
-    let mainNode = document.getElementById('main');
-    let backupNode = document.getElementById('backup');
     // Display saved CRNs
-    chrome.storage.sync.get(['mainList', 'backupList'], function (storage) {
-        let mainList = storage.mainList;
-        let backupList = storage.backupList;
-        displayCRNS(mainList, mainNode);
-        displayCRNS(backupList, backupNode);
+    chrome.storage.sync.get(function (storage) {
+        console.log(storage);
+        let nodeID, list, node;
+        let limit = Object.keys(storage).length;
+        for(let i = 1; i < limit; i++) {
+            nodeID = 'sub-' + i;
+            list = storage[nodeID];
+            node = document.getElementById(nodeID);
+            displayCRNS(list, node);
+        }
     });
-
     // Submit - number of times registration page has to be submitted
     chrome.storage.sync.set({'submit': 1});
 
-    document.getElementById('add-main').addEventListener('click', function () {
-        // Save to chrome storage
-        saveCRNS('mainList', mainNode);
+    // Add CRN button
+    let addButtons = document.querySelectorAll('.add-btn');
+    addButtons.forEach(function (button) {
+       button.addEventListener('click', function () {
+           let ol = button.previousElementSibling;
+           saveCRNS(ol.id, ol);
+       });
     });
 
-    document.getElementById('add-backup').addEventListener('click', function () {
-        // Save to chrome storage
-        saveCRNS('backupList', backupNode);
+    document.getElementById('add-more').addEventListener('click', function () {
+
     });
 
+    // Hide buttons
     let hideButtons = document.querySelectorAll(".hide-btn");
     hideButtons.forEach(function (button) {
        button.addEventListener('click', function () {
@@ -81,12 +87,7 @@ function addRemoveButton(element) {
 function removeFromNode(element) {
     let parent = element.parentNode;
     let index = Array.prototype.indexOf.call(parent.childNodes, element);
-
-    if (parent.id === 'main') {
-        removeFromList(parent, element, 'mainList', index);
-    } else {
-        removeFromList(parent, element, 'backupList', index);
-    }
+    removeFromList(parent, element, parent.id, index);
 }
 
 function removeFromList(parent, element, list, index) {
@@ -98,10 +99,15 @@ function removeFromList(parent, element, list, index) {
             parent.removeChild(element);
             notify(element.textContent + " removed", options);
             if (!parent.hasChildNodes()) {
+                removeList(list);
                 parent.appendChild(createListItem('This list is empty'));
             }
         });
     });
+}
+
+function removeList(list) {
+    chrome.storage.sync.remove(list);
 }
 
 function displayCRNS(list, node) {
@@ -122,10 +128,11 @@ function displayCRNS(list, node) {
             // append only the new crns to the node
             appendCRN(list, node);
         }
-    } else {
-        removeChildren(node);
-        node.appendChild(createListItem("This list is empty"));
     }
+    // else {
+    //     removeChildren(node);
+    //     node.appendChild(createListItem("This list is empty"));
+    // }
 }
 
 function removeChildren(node) {
@@ -137,16 +144,15 @@ function removeChildren(node) {
 function clearAll() {
     // Clear inputs
     document.getElementById('crn-input').value = "";
-    document.getElementById('crn-input').value = "";
     // Clear list group
-    let main = document.getElementById('main');
-    let backup = document.getElementById('backup');
-    removeChildren(main);
-    removeChildren(backup);
-    // Set empty list message
-    main.appendChild(createListItem('This list is empty'));
-    backup.appendChild(createListItem('This list is empty'));
-    // Clear chrome storage
+    // let main = document.getElementById('main');
+    // let backup = document.getElementById('backup');
+    // removeChildren(main);
+    // removeChildren(backup);
+    // // Set empty list message
+    // main.appendChild(createListItem('This list is empty'));
+    // backup.appendChild(createListItem('This list is empty'));
+    // // Clear chrome storage
     chrome.storage.sync.clear(function () {
         notify("Everything cleared", {type: 'danger', delay: 2000})
     });
