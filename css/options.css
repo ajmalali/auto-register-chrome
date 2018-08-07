@@ -5,7 +5,7 @@ html, body {
     font-family: 'Roboto', sans-serif !important;
 }
 
-p {
+.caption {
     font-size: 15px;
 }
 
@@ -18,10 +18,9 @@ p {
 }
 
 .add-btn {
-    width: 165px;
+    width: 140px;
     text-align: center;
-    margin-left: 55px;
-    margin-bottom: 5px;
+    margin-top: 15px;
 }
 
 .hide {
@@ -146,7 +145,7 @@ img.social:hover {
 }
 
 #clear {
-    width: 110px;
+    width: 120px;
     text-align: center;
     margin-right: 15px;
     float: right;
