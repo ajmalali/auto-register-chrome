@@ -2,12 +2,11 @@ function init() {
     // Display saved CRNs
     chrome.storage.sync.get(function (storage) {
         console.log(storage);
-        let nodeID, list, node;
-        let limit = Object.keys(storage).length;
-        for(let i = 1; i < limit; i++) {
-            nodeID = 'sub-' + i;
-            list = storage[nodeID];
-            node = document.getElementById(nodeID);
+        let list, node;
+        let nodeList = Object.keys(storage);
+        for(let i = 0; i < nodeList.length-1; i++) {
+            list = storage[nodeList[i]];
+            node = document.getElementById(nodeList[i]);
             displayCRNS(list, node);
         }
     });
@@ -31,6 +30,7 @@ function init() {
     let hideButtons = document.querySelectorAll(".hide-btn");
     hideButtons.forEach(function (button) {
        button.addEventListener('click', function () {
+           // hide-btn -> span -> h2 -> container
            this.parentElement.parentElement.nextElementSibling.classList.toggle('hide');
            updateButtonText(this);
        });
@@ -142,17 +142,20 @@ function removeChildren(node) {
 }
 
 function clearAll() {
-    // Clear inputs
+    // Clear input
     document.getElementById('crn-input').value = "";
+
     // Clear list group
-    // let main = document.getElementById('main');
-    // let backup = document.getElementById('backup');
-    // removeChildren(main);
-    // removeChildren(backup);
-    // // Set empty list message
-    // main.appendChild(createListItem('This list is empty'));
-    // backup.appendChild(createListItem('This list is empty'));
-    // // Clear chrome storage
+    let nodeID, node;
+    for(let i = 1; i <= 5; i++) {
+        nodeID = 'sub-' + i;
+        node = document.getElementById(nodeID);
+        removeChildren(node);
+        // Set empty list message
+        node.appendChild(createListItem('This list is empty'));
+    }
+
+    // Clear chrome storage
     chrome.storage.sync.clear(function () {
         notify("Everything cleared", {type: 'danger', delay: 2000})
     });
