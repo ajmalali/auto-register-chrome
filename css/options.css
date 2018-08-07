@@ -51,11 +51,7 @@ p {
 }
 
 .hide-btn:focus {
-    outline:0;
-}
-
-.card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
+    outline: 0;
 }
 
 h1.h1 {
@@ -82,7 +78,6 @@ div.card {
     width: 525px;
     margin: 50px auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
-    transition: 0.3s;
     border-radius: 7px;
 }
 
@@ -92,10 +87,10 @@ input.input-group {
     background-color: #f9f9f9;
     box-sizing: border-box;
     box-shadow: none;
-    border: 1px solid rgba(0 ,0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-input.input-group:focus{
+input.input-group:focus {
     background-color: white;
     border: 2px solid #2980b9;
     outline: none;
@@ -174,7 +169,7 @@ img.social:hover {
 }
 
 #help:focus {
-    outline:0;
+    outline: 0;
 }
 
 #help-modal .modal-dialog {
