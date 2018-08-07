@@ -9,9 +9,9 @@ html, body {
     font-size: 15px;
 }
 
-/*.container {*/
-    /*display: none;*/
-/*}*/
+hr {
+    border-color: rgba(0, 0, 0, 0.2) !important;
+}
 
 .add {
     animation: slide-in 0.4s ease;
