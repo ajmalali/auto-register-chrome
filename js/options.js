@@ -27,7 +27,14 @@ function init() {
     // Add backups
     document.getElementById('add-backup').addEventListener('click', function () {
         // Check if previous nodes have children
-        document.querySelector('.hidden').classList.remove('hidden');
+        let previousDiv = document.querySelector('.hidden').previousElementSibling;
+        let content = previousDiv.querySelector('.list-group').firstElementChild.textContent;
+        if (hasNumber(content)) {
+            document.querySelector('.hidden').classList.remove('hidden');
+        } else {
+            let title = previousDiv.firstElementChild.textContent;
+            notify('Fill ' + title + ' before adding backups', {type: 'danger', delay: 4000, width: 'auto'});
+        }
     });
 
     // Hide buttons
@@ -118,7 +125,7 @@ function displayCRNS(list, node) {
     // check if list is defined
     if (list && list.length > 0) {
         // check if node is empty by checking its first child
-        if (!hasNumber(node.firstChild.textContent)) {
+        if (!hasNumber(node.firstElementChild.textContent)) {
             removeChildren(node);
             // append all crns to the node
             let listItem;
@@ -143,7 +150,7 @@ function removeChildren(node) {
 
 function clearAll() {
     // Clear input
-    document.getElementById('crn-input').value = "";
+    clearInput();
 
     // Clear list group
     let nodeID, node;
@@ -152,7 +159,8 @@ function clearAll() {
         node = document.getElementById(nodeID);
         // Add hidden class to all except first
         if (nodeID !== 'sub-1') {
-            node.classList.add('hidden');
+            console.log(nodeID);
+            node.parentElement.parentElement.classList.add('hidden');
         }
         removeChildren(node);
         // Set empty list message
@@ -178,7 +186,7 @@ function notify(message, options) {
 
 function isValid(value) {
     let valid = false;
-    let regex = /[a-zA-Z!@#$%^&*.]+/;
+    let regex = /[a-zA-Z!@#$%^&*`.]+/;
     let invalidOption = {type: 'danger', delay: 2000, width: 'auto'};
     let noInputOption = {type: 'info', delay: 2000, width: 'auto'};
 
