@@ -5,12 +5,16 @@ html, body {
     font-family: 'Roboto', sans-serif !important;
 }
 
-.caption {
-    font-size: 15px;
-}
-
 hr {
     border-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.hidden {
+    display: none;
+}
+
+.caption {
+    font-size: 15px;
 }
 
 .add {
@@ -163,7 +167,7 @@ img.social:hover {
     font-size: 110%;
 }
 
-#add-more {
+#add-backup {
     margin-left: 15px;
     width: 140px;
 }

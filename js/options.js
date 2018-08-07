@@ -4,36 +4,40 @@ function init() {
         console.log(storage);
         let list, node;
         let nodeList = Object.keys(storage);
-        for(let i = 0; i < nodeList.length-1; i++) {
+        for (let i = 0; i < nodeList.length - 1; i++) {
             list = storage[nodeList[i]];
             node = document.getElementById(nodeList[i]);
+            node.parentElement.parentElement.classList.remove('hidden');
             displayCRNS(list, node);
         }
     });
+
     // Submit - number of times registration page has to be submitted
     chrome.storage.sync.set({'submit': 1});
 
     // Add CRN button
     let addButtons = document.querySelectorAll('.add-btn');
     addButtons.forEach(function (button) {
-       button.addEventListener('click', function () {
-           let ol = button.previousElementSibling;
-           saveCRNS(ol.id, ol);
-       });
+        button.addEventListener('click', function () {
+            let ol = button.previousElementSibling;
+            saveCRNS(ol.id, ol);
+        });
     });
 
-    document.getElementById('add-more').addEventListener('click', function () {
-
+    // Add backups
+    document.getElementById('add-backup').addEventListener('click', function () {
+        // Check if previous nodes have children
+        document.querySelector('.hidden').classList.remove('hidden');
     });
 
     // Hide buttons
     let hideButtons = document.querySelectorAll(".hide-btn");
     hideButtons.forEach(function (button) {
-       button.addEventListener('click', function () {
-           // hide-btn -> span -> h2 -> container
-           this.parentElement.parentElement.nextElementSibling.classList.toggle('hide');
-           updateButtonText(this);
-       });
+        button.addEventListener('click', function () {
+            // hide-btn -> span -> h2 -> container
+            this.parentElement.parentElement.nextElementSibling.classList.toggle('hide');
+            updateButtonText(this);
+        });
     });
 
     // Clear all for modal button
@@ -41,7 +45,7 @@ function init() {
 }
 
 function updateButtonText(button) {
-    if(button.value === 'HIDE') {
+    if (button.value === 'HIDE') {
         button.setAttribute('value', 'SHOW');
     } else {
         button.setAttribute('value', 'HIDE');
@@ -114,7 +118,7 @@ function displayCRNS(list, node) {
     // check if list is defined
     if (list && list.length > 0) {
         // check if node is empty by checking its first child
-        if (!hasNumber(node.children[0].textContent)) {
+        if (!hasNumber(node.firstChild.textContent)) {
             removeChildren(node);
             // append all crns to the node
             let listItem;
@@ -129,10 +133,6 @@ function displayCRNS(list, node) {
             appendCRN(list, node);
         }
     }
-    // else {
-    //     removeChildren(node);
-    //     node.appendChild(createListItem("This list is empty"));
-    // }
 }
 
 function removeChildren(node) {
@@ -147,9 +147,13 @@ function clearAll() {
 
     // Clear list group
     let nodeID, node;
-    for(let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 5; i++) {
         nodeID = 'sub-' + i;
         node = document.getElementById(nodeID);
+        // Add hidden class to all except first
+        if (nodeID !== 'sub-1') {
+            node.classList.add('hidden');
+        }
         removeChildren(node);
         // Set empty list message
         node.appendChild(createListItem('This list is empty'));
@@ -179,7 +183,7 @@ function isValid(value) {
     let noInputOption = {type: 'info', delay: 2000, width: 'auto'};
 
     // check if there is input
-    if(value) {
+    if (value) {
         // check if the string contains one or more of the above characters
         // (using regex will slow down performance a bit)
         if (!regex.test(value)) {
