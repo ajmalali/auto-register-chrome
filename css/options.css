@@ -61,10 +61,6 @@ hr {
     outline:0;
 }
 
-/*.card:hover {*/
-    /*box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);*/
-/*}*/
-
 h1.h1 {
     text-transform: uppercase;
     text-align: center;
@@ -88,7 +84,7 @@ h4.display-4 {
 div.card {
     width: 525px;
     margin: 30px auto;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 7px;
 }
 
