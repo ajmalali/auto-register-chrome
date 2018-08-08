@@ -1,5 +1,5 @@
 // TODO: add registration website to manifest.json
-window.addEventListener('onload', function () {
+function executeScript() {
     console.log("Window loaded");
     /*
     submit - To check how many times the page has been submitted
@@ -13,7 +13,7 @@ window.addEventListener('onload', function () {
             autoFill(list, submit);
         }
     });
-});
+}
 
 function autoFill(list, submit) {
     // Check if list is not undefined and not empty
@@ -35,6 +35,8 @@ function autoSubmit(submit) {
         document.getElementById('REG_BTN').click();
     });
 }
+
+window.addEventListener('load', executeScript);
 
 // document.addEventListener("DOMContentLoaded", function() {
 //     var script = document.createElement('script');
