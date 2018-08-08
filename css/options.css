@@ -54,6 +54,10 @@ hr {
     outline:0;
 }
 
+.first-sub {
+    transform: translateX(15px) translateY(-5px);
+}
+
 .remove-btn {
     width: 30px;
     float: right;
