@@ -25,22 +25,9 @@ function init() {
     });
 
     // Add backups
-    document.getElementById('add-backup').addEventListener('click', function () {
-        // Check if previous nodes have children
-        let previousDiv = document.querySelector('.hidden').previousElementSibling;
-        let content = previousDiv.querySelector('.list-group').firstElementChild.textContent;
-        if (hasNumber(content)) {
-            document.querySelector('.hidden').classList.remove('hidden');
-        } else {
-            let title = previousDiv.firstElementChild.textContent;
-            notify('Fill ' + title + ' before adding backups', {type: 'danger', delay: 4000, width: 'auto'});
-        }
-        // Check how many backup are shown
-        let hiddenNodes = document.querySelectorAll('.hidden').length;
-        this.disabled = hiddenNodes === 0;
-    });
+    document.getElementById('add-backup').addEventListener('click', addBackup);
 
-    // Hide buttons
+    // Hide/Show buttons
     let hideButtons = document.querySelectorAll(".hide-btn");
     hideButtons.forEach(function (button) {
         button.addEventListener('click', function () {
@@ -70,6 +57,21 @@ function createListItem(content) {
     return li;
 }
 
+function addBackup() {
+    // Check if previous nodes have children
+    let previousDiv = document.querySelector('.hidden').previousElementSibling;
+    let content = previousDiv.querySelector('.list-group').firstElementChild.textContent;
+    if (hasNumber(content)) {
+        document.querySelector('.hidden').classList.remove('hidden');
+    } else {
+        let title = previousDiv.firstElementChild.textContent;
+        notify('Fill ' + title + ' before adding backups', {type: 'danger', delay: 4000, width: 'auto'});
+    }
+    // Check how many backup are shown
+    let hiddenNodes = document.querySelectorAll('.hidden').length;
+    this.disabled = hiddenNodes === 0;
+}
+
 function appendCRN(list, node) {
     let index = node.children.length;
     let listItem;
@@ -80,6 +82,7 @@ function appendCRN(list, node) {
     }
 }
 
+// Used when checking whether the first child is a number
 function hasNumber(string) {
     return /\d/.test(string);
 }
@@ -108,7 +111,9 @@ function removeFromList(parent, element, list, index) {
     let options = {type: 'danger', delay: 1300};
     chrome.storage.sync.get(list, function (storage) {
         let updatedList = storage[list];
+        // Remove that specific element from the list
         updatedList.splice(index, 1);
+        // Update chrome storage
         chrome.storage.sync.set({[list]: updatedList}, function () {
             parent.removeChild(element);
             notify(element.textContent + " removed", options);
