@@ -33,7 +33,7 @@ function init() {
         button.addEventListener('click', function () {
             // hide-btn -> span -> h2 -> container
             this.parentElement.parentElement.nextElementSibling.classList.toggle('hide');
-            updateButton(this);
+            toggleButton(this);
         });
     });
 
@@ -41,7 +41,7 @@ function init() {
     document.querySelector('#confirm-modal button.btn-outline-danger').addEventListener('click', clearAll);
 }
 
-function updateButton(button) {
+function toggleButton(button) {
     if (button.value === 'HIDE') {
         button.setAttribute('src', 'icons/expand.png');
         button.setAttribute('value', 'SHOW');
