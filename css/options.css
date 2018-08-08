@@ -36,13 +36,11 @@ hr {
 }
 
 .hide-btn {
-    background: none;
-    border: none;
-    font-size: 20px;
-    font-family: 'Roboto', sans-serif;
+    width: 45px;
     float: right;
-    margin: 5px auto;
-    opacity: 0.5;
+    margin: 0 10px;
+    transform: translateY(-5px);
+    opacity: 0.3;
     transition: 0.3s ease-in;
 }
 
@@ -57,19 +55,15 @@ hr {
 }
 
 .remove-btn {
-    background: none;
-    border: none;
-    font-size: 20px;
-    font-family: 'Roboto', sans-serif;
+    width: 30px;
     float: right;
     margin: 5px auto;
-    opacity: 0.5;
+    opacity: 0.3;
     transition: 0.3s ease-in;
 }
 
 .remove-btn:hover {
     opacity: 1.0;
-    color: #dc3545;
     transition: opacity 0.3s ease-in;
     cursor: pointer;
 }

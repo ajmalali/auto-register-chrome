@@ -33,7 +33,7 @@ function init() {
         button.addEventListener('click', function () {
             // hide-btn -> span -> h2 -> container
             this.parentElement.parentElement.nextElementSibling.classList.toggle('hide');
-            updateButtonText(this);
+            updateButton(this);
         });
     });
 
@@ -41,10 +41,12 @@ function init() {
     document.querySelector('#confirm-modal button.btn-outline-danger').addEventListener('click', clearAll);
 }
 
-function updateButtonText(button) {
+function updateButton(button) {
     if (button.value === 'HIDE') {
+        button.setAttribute('src', 'icons/expand.png');
         button.setAttribute('value', 'SHOW');
     } else {
+        button.setAttribute('src', 'icons/collapse.png');
         button.setAttribute('value', 'HIDE');
     }
 }
