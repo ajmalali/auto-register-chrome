@@ -35,6 +35,9 @@ function init() {
             let title = previousDiv.firstElementChild.textContent;
             notify('Fill ' + title + ' before adding backups', {type: 'danger', delay: 4000, width: 'auto'});
         }
+        // Check how many backup are shown
+        let hiddenNodes = document.querySelectorAll('.hidden').length;
+        this.disabled = hiddenNodes === 0;
     });
 
     // Hide buttons
@@ -159,13 +162,15 @@ function clearAll() {
         node = document.getElementById(nodeID);
         // Add hidden class to all except first
         if (nodeID !== 'sub-1') {
-            console.log(nodeID);
             node.parentElement.parentElement.classList.add('hidden');
         }
         removeChildren(node);
         // Set empty list message
         node.appendChild(createListItem('This list is empty'));
     }
+
+    // Enable add more backups button
+    document.getElementById('add-backup').disabled = false;
 
     // Clear chrome storage
     chrome.storage.sync.clear(function () {
