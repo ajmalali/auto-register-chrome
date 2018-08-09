@@ -33,22 +33,12 @@ function init() {
         button.addEventListener('click', function () {
             // hide-btn -> span -> h2 -> container
             this.parentElement.parentElement.nextElementSibling.classList.toggle('hide');
-            toggleButton(this);
+            this.classList.toggle('rotate');
         });
     });
 
     // Clear all for modal button
     document.querySelector('#confirm-modal button.btn-outline-danger').addEventListener('click', clearAll);
-}
-
-function toggleButton(button) {
-    if (button.value === 'HIDE') {
-        button.setAttribute('src', 'icons/expand.png');
-        button.setAttribute('value', 'SHOW');
-    } else {
-        button.setAttribute('src', 'icons/collapse.png');
-        button.setAttribute('value', 'HIDE');
-    }
 }
 
 function createListItem(content) {

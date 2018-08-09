@@ -39,14 +39,18 @@ hr {
     width: 45px;
     float: right;
     margin: 0 10px;
-    transform: translateY(-5px);
-    opacity: 0.3;
-    transition: 0.3s ease-in;
+    transform: translateY(-5px) rotateX(0deg);
+    transition: 0.2s ease;
+    opacity: 0.8;
+}
+
+.rotate {
+    transform: translateY(-5px) rotateX(180deg);
+    transition: 0.2s ease;
+
 }
 
 .hide-btn:hover {
-    opacity: 1.0;
-    transition: 0.3s ease-in;
     cursor: pointer;
 }
 
@@ -55,20 +59,16 @@ hr {
 }
 
 .first-sub {
-    transform: translateX(15px) translateY(-5px);
+    margin: 0 -5px 0 20px;
 }
 
 .remove-btn {
     width: 30px;
     float: right;
     margin: 5px auto;
-    opacity: 0.3;
-    transition: 0.3s ease-in;
 }
 
 .remove-btn:hover {
-    opacity: 1.0;
-    transition: opacity 0.3s ease-in;
     cursor: pointer;
 }
 
