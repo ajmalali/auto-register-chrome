@@ -27,6 +27,17 @@ function init() {
     // Add backups
     document.getElementById('add-backup').addEventListener('click', addBackup);
 
+    //Initialize hide/show buttons
+    initHideButtons();
+
+    // Initialize delete/trash buttons
+    initDeleteButtons();
+
+    // Clear all for modal button
+    document.querySelector('#confirm-modal button.btn-outline-danger').addEventListener('click', clearAll);
+}
+
+function initHideButtons() {
     // Hide/Show buttons
     let hideButtons = document.querySelectorAll(".hide-btn");
     hideButtons.forEach(function (button) {
@@ -36,9 +47,11 @@ function init() {
             this.classList.toggle('rotate');
         });
     });
+}
 
-    let removeButtons = document.querySelectorAll('.remove-btn');
-    removeButtons.forEach(function (button) {
+function initDeleteButtons() {
+    let deleteButtons = document.querySelectorAll('.remove-btn');
+    deleteButtons.forEach(function (button) {
         button.addEventListener('click', function () {
             let parentDiv = this.parentElement.parentElement.parentElement;
             parentDiv.classList.add('hidden');
@@ -47,9 +60,6 @@ function init() {
             checkHiddenDivs();
         });
     });
-
-    // Clear all for modal button
-    document.querySelector('#confirm-modal button.btn-outline-danger').addEventListener('click', clearAll);
 }
 
 function createListItem(content) {
