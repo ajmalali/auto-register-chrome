@@ -20,7 +20,7 @@
   "content_scripts": [
     {
       "matches": ["file:///Users/ajmal/Development/Web%20Dev/auto-register-chrome/test.html"],
-      "js": ["js/crnAutofill.js"]
+      "js": ["js/autofill.js"]
     },
     {
       "matches": ["http://ssbweb.kfupm.edu.sa/PROD8/bwskfreg.P_AltPin"],

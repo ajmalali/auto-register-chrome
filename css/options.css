@@ -5,7 +5,15 @@ html, body {
     font-family: 'Roboto', sans-serif !important;
 }
 
-p {
+hr {
+    border-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.hidden {
+    display: none;
+}
+
+.caption {
     font-size: 15px;
 }
 
@@ -18,39 +26,53 @@ p {
 }
 
 .add-btn {
-    width: 165px;
-    text-align: center;
-    margin-left: 55px;
-    margin-bottom: 5px;
+    width: 140px;
+    margin-top: 15px;
+    /*transform: translateX(156px);*/
 }
 
 .hide {
     display: none;
 }
 
-.hide-btn:after {
-    content: "SHOW";
-    color: black;
-}
-
 .hide-btn {
-    background: none;
-    border: none;
-    font-size: 20px;
-    font-family: 'Roboto', sans-serif;
+    width: 45px;
     float: right;
-    margin: 5px auto;
-    opacity: 0.5;
-    transition: 0.3s ease-in;
-}
-
-.hide-btn:hover {
-    opacity: 1.0;
-    transition: 0.3s ease-in;
-    cursor: pointer;
+    margin: 0 10px;
+    transform: translateY(-5px) rotateX(0deg);
+    transition: 0.2s ease;
+    opacity: 0.8;
 }
 
 .hide-btn:focus {
+    outline: 0;
+}
+
+.rotate {
+    transform: translateY(-5px) rotateX(180deg);
+    transition: 0.2s ease;
+
+}
+
+.hide-btn:hover {
+    cursor: pointer;
+}
+
+.first-sub {
+    margin: 0 -5px 0 20px;
+}
+
+.remove-btn {
+    width: 30px;
+    float: right;
+    margin: 5px auto;
+}
+
+.remove-btn:hover {
+    cursor: pointer;
+}
+
+.remove-btn:focus {
     outline: 0;
 }
 
@@ -75,9 +97,9 @@ h4.display-4 {
 }
 
 div.card {
-    width: 525px;
-    margin: 50px auto;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    width: 550px;
+    margin: 30px auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 7px;
 }
 
@@ -101,6 +123,10 @@ p.quote {
     text-align: center;
     font-size: 12px;
     color: #d8d8d8;
+}
+
+ol.list-group {
+    margin-top: 10px;
 }
 
 li.list-group-item img {
@@ -141,15 +167,19 @@ img.social:hover {
 }
 
 #clear {
-    width: 110px;
+    width: 125px;
     text-align: center;
-    margin-top: 5px;
     margin-right: 15px;
     float: right;
 }
 
 #confirm-modal .modal-body {
     font-size: 110%;
+}
+
+#add-backup {
+    margin-left: 15px;
+    width: 140px;
 }
 
 #help {

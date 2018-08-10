@@ -1,48 +1,44 @@
 function init() {
-    let mainNode = document.getElementById('main');
-    let backupNode = document.getElementById('backup');
     // Display saved CRNs
-    chrome.storage.sync.get(['mainList', 'backupList'], function (storage) {
-        let mainList = storage.mainList;
-        let backupList = storage.backupList;
-        displayCRNS(mainList, mainNode);
-        displayCRNS(backupList, backupNode);
+    chrome.storage.sync.get(function (storage) {
+        console.log(storage);
+        let list, node;
+        let nodeList = Object.keys(storage);
+        for (let i = 0; i < nodeList.length - 1; i++) {
+            list = storage[nodeList[i]];
+            node = document.getElementById(nodeList[i]);
+            node.parentElement.parentElement.classList.remove('hidden');
+            displayCRNS(list, node);
+        }
     });
 
     // Submit - number of times registration page has to be submitted
     chrome.storage.sync.set({'submit': 1});
 
-    document.getElementById('add-main').addEventListener('click', function () {
-        // Save to chrome storage
-        saveCRNS('mainList', mainNode);
+    // Add CRN button
+    let addButtons = document.querySelectorAll('.add-btn');
+    addButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            let ol = button.previousElementSibling;
+            saveCRNS(ol.id, ol);
+        });
     });
 
-    document.getElementById('add-backup').addEventListener('click', function () {
-        // Save to chrome storage
-        saveCRNS('backupList', backupNode);
-    });
+    // Add backups
+    document.getElementById('add-backup').addEventListener('click', addBackup);
 
-    // Events for Hide/Show buttons
-    let hideButtons = document.querySelectorAll(".container input[type='button']");
+    // Hide/Show buttons
+    let hideButtons = document.querySelectorAll(".hide-btn");
     hideButtons.forEach(function (button) {
-       button.addEventListener('click', function () {
-           // input(button) -> span -> h2 -> div.crn-list
-           let div = this.parentElement.parentElement.nextElementSibling;
-           div.classList.toggle('hide');
-           updateButtonText(this);
-       });
+        button.addEventListener('click', function () {
+            // hide-btn -> span -> h2 -> container
+            this.parentElement.parentElement.nextElementSibling.classList.toggle('hide');
+            this.classList.toggle('rotate');
+        });
     });
 
     // Clear all for modal button
     document.querySelector('#confirm-modal button.btn-outline-danger').addEventListener('click', clearAll);
-}
-
-function updateButtonText(button) {
-    if(button.value === 'HIDE') {
-        button.setAttribute('value', 'SHOW');
-    } else {
-        button.setAttribute('value', 'HIDE');
-    }
 }
 
 function createListItem(content) {
@@ -51,6 +47,21 @@ function createListItem(content) {
     let text = document.createTextNode(content);
     li.appendChild(text);
     return li;
+}
+
+function addBackup() {
+    // Check if previous nodes have children
+    let previousDiv = document.querySelector('.hidden').previousElementSibling;
+    let content = previousDiv.querySelector('.list-group').firstElementChild.textContent;
+    if (hasNumber(content)) {
+        document.querySelector('.hidden').classList.remove('hidden');
+    } else {
+        let title = previousDiv.firstElementChild.textContent;
+        notify('Fill ' + title + ' before adding backups', {type: 'danger', delay: 4000, width: 'auto'});
+    }
+    // Check how many backup are shown
+    let hiddenNodes = document.querySelectorAll('.hidden').length;
+    this.disabled = hiddenNodes === 0;
 }
 
 function appendCRN(list, node) {
@@ -63,6 +74,7 @@ function appendCRN(list, node) {
     }
 }
 
+// Used when checking whether the first child is a number
 function hasNumber(string) {
     return /\d/.test(string);
 }
@@ -84,34 +96,36 @@ function addRemoveButton(element) {
 function removeFromNode(element) {
     let parent = element.parentNode;
     let index = Array.prototype.indexOf.call(parent.childNodes, element);
-
-    if (parent.id === 'main') {
-        removeFromList(parent, element, 'mainList', index);
-    } else {
-        removeFromList(parent, element, 'backupList', index);
-    }
+    removeFromList(parent, element, parent.id, index);
 }
 
 function removeFromList(parent, element, list, index) {
     let options = {type: 'danger', delay: 1300};
     chrome.storage.sync.get(list, function (storage) {
         let updatedList = storage[list];
+        // Remove that specific element from the list
         updatedList.splice(index, 1);
+        // Update chrome storage
         chrome.storage.sync.set({[list]: updatedList}, function () {
             parent.removeChild(element);
             notify(element.textContent + " removed", options);
             if (!parent.hasChildNodes()) {
+                removeList(list);
                 parent.appendChild(createListItem('This list is empty'));
             }
         });
     });
 }
 
+function removeList(list) {
+    chrome.storage.sync.remove(list);
+}
+
 function displayCRNS(list, node) {
     // check if list is defined
     if (list && list.length > 0) {
         // check if node is empty by checking its first child
-        if (!hasNumber(node.children[0].textContent)) {
+        if (!hasNumber(node.firstElementChild.textContent)) {
             removeChildren(node);
             // append all crns to the node
             let listItem;
@@ -125,9 +139,6 @@ function displayCRNS(list, node) {
             // append only the new crns to the node
             appendCRN(list, node);
         }
-    } else {
-        removeChildren(node);
-        node.appendChild(createListItem("This list is empty"));
     }
 }
 
@@ -138,17 +149,26 @@ function removeChildren(node) {
 }
 
 function clearAll() {
-    // Clear inputs
-    document.getElementById('crn-input').value = "";
-    document.getElementById('crn-input').value = "";
+    // Clear input
+    clearInput();
+
     // Clear list group
-    let main = document.getElementById('main');
-    let backup = document.getElementById('backup');
-    removeChildren(main);
-    removeChildren(backup);
-    // Set empty list message
-    main.appendChild(createListItem('This list is empty'));
-    backup.appendChild(createListItem('This list is empty'));
+    let nodeID, node;
+    for (let i = 1; i <= 5; i++) {
+        nodeID = 'sub-' + i;
+        node = document.getElementById(nodeID);
+        // Add hidden class to all except first
+        if (nodeID !== 'sub-1') {
+            node.parentElement.parentElement.classList.add('hidden');
+        }
+        removeChildren(node);
+        // Set empty list message
+        node.appendChild(createListItem('This list is empty'));
+    }
+
+    // Enable add more backups button
+    document.getElementById('add-backup').disabled = false;
+
     // Clear chrome storage
     chrome.storage.sync.clear(function () {
         notify("Everything cleared", {type: 'danger', delay: 2000})
@@ -168,12 +188,12 @@ function notify(message, options) {
 
 function isValid(value) {
     let valid = false;
-    let regex = /[a-zA-Z!@#$%^&*.]+/;
+    let regex = /[a-zA-Z!@#$%^&*`.]+/;
     let invalidOption = {type: 'danger', delay: 2000, width: 'auto'};
     let noInputOption = {type: 'info', delay: 2000, width: 'auto'};
 
     // check if there is input
-    if(value) {
+    if (value) {
         // check if the string contains one or more of the above characters
         // (using regex will slow down performance a bit)
         if (!regex.test(value)) {

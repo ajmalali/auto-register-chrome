@@ -9,7 +9,8 @@
     </head>
     <body>
         <!-- Clear all modal -->
-        <div class="modal fade" id="confirm-modal" tabindex="-1" role="dialog" aria-labelledby="clearAll" aria-hidden="true">
+        <div class="modal fade" id="confirm-modal" tabindex="-1" role="dialog" aria-labelledby="clearAll"
+             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -36,7 +37,8 @@
                     <div class="modal-body">
                         <h4 class="display-4">Step 1: Get your CRNs</h4>
                         <p>
-                            Go to <a href="http://www.ikfupm.com/scheduler/index.php" target="_blank">KFUPM Scheduler</a>
+                            Go to <a href="http://www.ikfupm.com/scheduler/index.php" target="_blank">KFUPM
+                            Scheduler</a>
                             and generate your schedule. Copy your CRNs by clicking on the Copy CRNs button.
                         </p>
                         <img src="images/CopyCRN.png" alt="Copy CRN screenshot">
@@ -93,38 +95,98 @@
 
                 <!--Input field and buttons-->
                 <input type="text" class="input-group" id="crn-input" placeholder="Enter/Paste CRNS">
-                <input type="button" class="btn btn-outline-primary add-btn" id="add-main" value="ADD MAIN CRN">
-                <input type="button" class="btn btn-outline-secondary add-btn" id="add-backup" value="ADD BACKUP CRN">
-
                 <hr>
 
-                <!--Main CRNs div-->
+                <!--Submission div-->
                 <div class="container">
-                    <h2 class="display-3">Main CRNS <span><input class="hide-btn" type="button" value="HIDE"></span></h2>
+                    <h2 class="display-3">
+                        First Submission
+                        <span><input class="hide-btn first-sub" src="icons/hide-show.png" type="image"
+                                     value="HIDE"></span>
+                    </h2>
                     <div class="crn-list">
-                        <p>(These will be registered first)</p>
-                        <ol class="list-group" id="main">
-                            <li class="list-group-item"> This list is empty</li>
+                        <p class="caption">(These will be submitted when the page loads)</p>
+                        <ol class="list-group" id="sub-1">
+                            <li class="list-group-item">This list is empty</li>
                         </ol>
+                        <input type="button" class="btn btn-outline-dark add-btn" value="ADD CRN">
                     </div>
+                    <hr>
                 </div>
 
-                <hr>
-
-                <!--Backup CRNs div-->
-                <div class="container">
-                    <h2 class="display-3">Backup CRNS <span><input class="hide-btn" type="button" value="HIDE"></span></h2>
+                <!--Submission div-->
+                <div class="container hidden">
+                    <h2 class="display-3">
+                        Second Submission
+                        <span><input class="remove-btn" src="icons/trash.png" type="image"></span>
+                        <span><input class="hide-btn" src="icons/hide-show.png" type="image" value="HIDE"></span>
+                    </h2>
                     <div class="crn-list">
-                        <p>(These will be registered second)</p>
-                        <ol class="list-group" id="backup">
-                            <li class="list-group-item"> This list is empty</li>
+                        <p class="caption">(These will be submitted after the first reload)</p>
+                        <ol class="list-group" id="sub-2">
+                            <li class="list-group-item">This list is empty</li>
                         </ol>
+                        <input type="button" class="btn btn-outline-dark add-btn" value="ADD CRN">
                     </div>
+                    <hr>
                 </div>
-                <hr>
+
+                <!--Submission div-->
+                <div class="container hidden">
+                    <h2 class="display-3">
+                        Third Submission
+                        <span><input class="remove-btn" src="icons/trash.png" type="image"></span>
+                        <span><input class="hide-btn" src="icons/hide-show.png" type="image" value="HIDE"></span>
+                    </h2>
+                    <div class="crn-list">
+                        <p class="caption">(These will be submitted after the second reload)</p>
+                        <ol class="list-group" id="sub-3">
+                            <li class="list-group-item">This list is empty</li>
+                        </ol>
+                        <input type="button" class="btn btn-outline-dark add-btn" value="ADD CRN">
+                    </div>
+                    <hr>
+                </div>
+
+                <!--Submission div-->
+                <div class="container hidden">
+                    <h2 class="display-3">
+                        Fourth Submission
+                        <span><input class="remove-btn" src="icons/trash.png" type="image"></span>
+                        <span><input class="hide-btn" src="icons/hide-show.png" type="image" value="HIDE"></span>
+                    </h2>
+                    <div class="crn-list">
+                        <p class="caption">(These will be submitted after the third reload)</p>
+                        <ol class="list-group" id="sub-4">
+                            <li class="list-group-item">This list is empty</li>
+                        </ol>
+                        <input type="button" class="btn btn-outline-dark add-btn" value="ADD CRN">
+                    </div>
+                    <hr>
+                </div>
+
+                <!--Submission div-->
+                <div class="container hidden">
+                    <h2 class="display-3">
+                        Fifth Submission
+                        <span><input class="remove-btn" src="icons/trash.png" type="image"></span>
+                        <span><input class="hide-btn" src="icons/hide-show.png" type="image" value="HIDE"></span>
+                    </h2>
+                    <div class="crn-list">
+                        <p class="caption">(These will be submitted after the fourth reload)</p>
+                        <ol class="list-group" id="sub-5">
+                            <li class="list-group-item">This list is empty</li>
+                        </ol>
+                        <input type="button" class="btn btn-outline-dark add-btn" value="ADD CRN">
+                    </div>
+                    <hr>
+                </div>
+
                 <!--Clear button-->
                 <input type="button" class="btn btn-outline-danger" id="clear" value="CLEAR ALL"
                        data-toggle="modal" data-target="#confirm-modal">
+                <!--Add more backups-->
+                <input type="button" class="btn btn-outline-primary" id="add-backup" value="ADD BACKUP">
             </div>
         </div>
 
