@@ -55,7 +55,7 @@ hr {
 }
 
 .hide-btn:focus {
-    outline:0;
+    outline: 0;
 }
 
 .first-sub {
@@ -73,7 +73,7 @@ hr {
 }
 
 .remove-btn:focus {
-    outline:0;
+    outline: 0;
 }
 
 h1.h1 {
@@ -109,10 +109,10 @@ input.input-group {
     background-color: #f9f9f9;
     box-sizing: border-box;
     box-shadow: none;
-    border: 1px solid rgba(0 ,0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-input.input-group:focus{
+input.input-group:focus {
     background-color: white;
     border: 2px solid #2980b9;
     outline: none;
@@ -201,7 +201,7 @@ img.social:hover {
 }
 
 #help:focus {
-    outline:0;
+    outline: 0;
 }
 
 #help-modal .modal-dialog {
