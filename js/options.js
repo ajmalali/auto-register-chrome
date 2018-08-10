@@ -7,7 +7,7 @@ function init() {
         for (let i = 0; i < nodeList.length - 1; i++) {
             list = storage[nodeList[i]];
             node = document.getElementById(nodeList[i]);
-            node.parentElement.parentElement.classList.remove('hidden');
+            node.parentElement.parentElement.parentElement.classList.remove('hidden');
             displayCRNS(list, node);
         }
     });
@@ -72,13 +72,15 @@ function createListItem(content) {
 
 function addBackup() {
     // Check if previous nodes have children
-    let divs = document.querySelectorAll('div[class="container"]:not(.hidden)');
+    let divs = document.querySelectorAll('div[class="card"]:not(.hidden)');
     let previousDiv = divs[divs.length-1];
     let content = previousDiv.querySelector('.list-group').firstElementChild.textContent;
     if (hasNumber(content)) {
-        document.querySelector('.hidden').classList.remove('hidden');
+        let newBackup = document.querySelector('.hidden');
+        newBackup.classList.remove('hidden');
+        newBackup.scrollIntoView({behavior: 'smooth'});
     } else {
-        let title = previousDiv.querySelector('h2');
+        let title = previousDiv.querySelector('h2').textContent;
         notify('Fill ' + title + ' before adding backups', {type: 'danger', delay: 4000, width: 'auto'});
     }
     //Check to disable add backup button
@@ -186,7 +188,7 @@ function clearAll() {
         node = document.getElementById(nodeID);
         // Add hidden class to all except first
         if (nodeID !== 'sub-1') {
-            node.parentElement.parentElement.classList.add('hidden');
+            node.parentElement.parentElement.parentElement.classList.add('hidden');
         }
         removeChildren(node);
         // Set empty list message
