@@ -28,7 +28,6 @@ div.hidden {
 .add-btn {
     width: 140px;
     margin-top: 15px;
-    /*transform: translateX(156px);*/
 }
 
 .hide {
@@ -194,7 +193,7 @@ img.social:hover {
     bottom: 0;
     font-family: inherit;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 #help:hover {

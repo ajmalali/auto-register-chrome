@@ -7,7 +7,7 @@ function init() {
         for (let i = 0; i < nodeList.length - 1; i++) {
             list = storage[nodeList[i]];
             node = document.getElementById(nodeList[i]);
-            node.parentElement.parentElement.parentElement.classList.remove('hidden');
+            node.closest('div.card').classList.remove('hidden');
             displayCRNS(list, node);
         }
     });
@@ -27,7 +27,7 @@ function init() {
     // Add backups
     document.getElementById('add-backup').addEventListener('click', addBackup);
 
-    //Initialize hide/show buttons
+    // Initialize hide/show buttons
     initHideButtons();
 
     // Initialize delete/trash buttons
@@ -42,8 +42,8 @@ function initHideButtons() {
     let hideButtons = document.querySelectorAll(".hide-btn");
     hideButtons.forEach(function (button) {
         button.addEventListener('click', function () {
-            // hide-btn -> span -> h2 -> container
-            this.parentElement.parentElement.nextElementSibling.classList.toggle('hide');
+            let div = this.closest('div.card-body').querySelector('.crn-list');
+            div.classList.toggle('hide');
             this.classList.toggle('rotate');
         });
     });
@@ -53,9 +53,9 @@ function initDeleteButtons() {
     let deleteButtons = document.querySelectorAll('.remove-btn');
     deleteButtons.forEach(function (button) {
         button.addEventListener('click', function () {
-            let parentDiv = this.parentElement.parentElement.parentElement;
-            parentDiv.classList.add('hidden');
-            let ol = parentDiv.querySelector('.list-group');
+            let card = this.closest('div.card');
+            card.classList.add('hidden');
+            let ol = card.querySelector('ol.list-group');
             removeList(ol.id);
             checkHiddenDivs();
         });
@@ -188,7 +188,7 @@ function clearAll() {
         node = document.getElementById(nodeID);
         // Add hidden class to all except first
         if (nodeID !== 'sub-1') {
-            node.parentElement.parentElement.parentElement.classList.add('hidden');
+            node.closest('div.card').classList.add('hidden');
         }
         removeChildren(node);
         // Set empty list message
