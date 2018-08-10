@@ -37,6 +37,16 @@ function init() {
         });
     });
 
+    let removeButtons = document.querySelectorAll('.remove-btn');
+    removeButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            let parentDiv = this.parentElement.parentElement.parentElement;
+            parentDiv.classList.add('hidden');
+            let ol = parentDiv.querySelector('.list-group');
+            removeList(ol.id);
+        });
+    });
+
     // Clear all for modal button
     document.querySelector('#confirm-modal button.btn-outline-danger').addEventListener('click', clearAll);
 }
