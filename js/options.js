@@ -44,6 +44,7 @@ function init() {
             parentDiv.classList.add('hidden');
             let ol = parentDiv.querySelector('.list-group');
             removeList(ol.id);
+            checkHiddenDivs();
         });
     });
 
@@ -61,17 +62,23 @@ function createListItem(content) {
 
 function addBackup() {
     // Check if previous nodes have children
-    let previousDiv = document.querySelector('.hidden').previousElementSibling;
+    let divs = document.querySelectorAll('div[class="container"]:not(.hidden)');
+    let previousDiv = divs[divs.length-1];
     let content = previousDiv.querySelector('.list-group').firstElementChild.textContent;
     if (hasNumber(content)) {
         document.querySelector('.hidden').classList.remove('hidden');
     } else {
-        let title = previousDiv.firstElementChild.textContent;
+        let title = previousDiv.querySelector('h2');
         notify('Fill ' + title + ' before adding backups', {type: 'danger', delay: 4000, width: 'auto'});
     }
+    //Check to disable add backup button
+    checkHiddenDivs();
+}
+
+function checkHiddenDivs() {
     // Check how many backup are shown
     let hiddenNodes = document.querySelectorAll('.hidden').length;
-    this.disabled = hiddenNodes === 0;
+    document.getElementById('add-backup').disabled = hiddenNodes === 0;
 }
 
 function appendCRN(list, node) {
