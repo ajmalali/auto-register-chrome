@@ -54,10 +54,17 @@ function initDeleteButtons() {
     deleteButtons.forEach(function (button) {
         button.addEventListener('click', function () {
             let card = this.closest('div.card');
-            card.classList.add('hidden');
-            let ol = card.querySelector('ol.list-group');
-            removeList(ol.id);
-            checkHiddenDivs();
+            card.classList.add('remove');
+            card.addEventListener('animationend', function (e) {
+                if(e.animationName === 'slide-out') {
+                    this.classList.add('hidden');
+                    this.classList.remove('remove');
+                    let ol = card.querySelector('ol.list-group');
+                    removeChildren(ol);
+                    removeList(ol.id, ol);
+                    checkHiddenDivs();
+                }
+            });
         });
     });
 }
@@ -72,16 +79,18 @@ function createListItem(content) {
 
 function addBackup() {
     // Check if previous nodes have children
-    let divs = document.querySelectorAll('div[class="card"]:not(.hidden)');
-    let previousDiv = divs[divs.length-1];
+    let divs = document.querySelectorAll('div.card:not(.hidden)');
+    console.log(divs);
+    let previousDiv = divs[divs.length - 1];
     let content = previousDiv.querySelector('.list-group').firstElementChild.textContent;
     if (hasNumber(content)) {
         let newBackup = document.querySelector('.hidden');
         newBackup.classList.remove('hidden');
+        newBackup.classList.add('add');
         newBackup.scrollIntoView({behavior: 'smooth'});
     } else {
         let title = previousDiv.querySelector('h2').textContent;
-        notify('Fill ' + title + ' before adding backups', {type: 'danger', delay: 4000, width: 'auto'});
+        notify('Fill ' + title + ' before adding a backup', {type: 'danger', delay: 4000, width: 'auto'});
     }
     //Check to disable add backup button
     checkHiddenDivs();
@@ -139,15 +148,15 @@ function removeFromList(parent, element, list, index) {
             parent.removeChild(element);
             notify(element.textContent + " removed", options);
             if (!parent.hasChildNodes()) {
-                removeList(list);
-                parent.appendChild(createListItem('This list is empty'));
+                removeList(list, parent);
             }
         });
     });
 }
 
-function removeList(list) {
+function removeList(list, node) {
     chrome.storage.sync.remove(list);
+    node.appendChild(createListItem('This list is empty'));
 }
 
 function displayCRNS(list, node) {

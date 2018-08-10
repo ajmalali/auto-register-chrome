@@ -50,7 +50,6 @@ div.hidden {
 .rotate {
     transform: translateY(-5px) rotateX(180deg);
     transition: 0.2s ease;
-
 }
 
 .hide-btn:hover {
@@ -98,7 +97,7 @@ h4.display-4 {
 div.card {
     width: 550px;
     margin: 30px auto;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
     border-radius: 7px;
 }
 
