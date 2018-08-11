@@ -62,19 +62,12 @@ function initDeleteButtons() {
                     let ol = card.querySelector('ol.list-group');
                     removeChildren(ol);
                     removeList(ol.id, ol);
-                    checkHiddenDivs();
+                    notify(this.querySelector('h2').textContent + " deleted", {type: 'danger', delay: 1000, width: 'auto'});
+                    updateAddButton();
                 }
             });
         });
     });
-}
-
-function createListItem(content) {
-    let li = document.createElement('li');
-    li.setAttribute('class', 'list-group-item add');
-    let text = document.createTextNode(content);
-    li.appendChild(text);
-    return li;
 }
 
 function addBackup() {
@@ -88,18 +81,27 @@ function addBackup() {
         newBackup.classList.remove('hidden');
         newBackup.classList.add('add');
         newBackup.scrollIntoView({behavior: 'smooth'});
+        notify(newBackup.querySelector('h2').textContent + " added", {type: 'success', delay: 1000, width: 'auto'});
     } else {
         let title = previousDiv.querySelector('h2').textContent;
         notify('Fill ' + title + ' before adding a backup', {type: 'danger', delay: 4000, width: 'auto'});
     }
     //Check to disable add backup button
-    checkHiddenDivs();
+    updateAddButton();
 }
 
-function checkHiddenDivs() {
+function updateAddButton() {
     // Check how many backup are shown
     let hiddenNodes = document.querySelectorAll('.hidden').length;
     document.getElementById('add-backup').disabled = hiddenNodes === 0;
+}
+
+function createListItem(content) {
+    let li = document.createElement('li');
+    li.setAttribute('class', 'list-group-item add');
+    let text = document.createTextNode(content);
+    li.appendChild(text);
+    return li;
 }
 
 function appendCRN(list, node) {
