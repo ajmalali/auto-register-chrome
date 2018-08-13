@@ -73,7 +73,6 @@ function initDeleteButtons() {
 function addBackup() {
     // Check if previous nodes have children
     let divs = document.querySelectorAll('div.card:not(.hidden)');
-    console.log(divs);
     let previousDiv = divs[divs.length - 1];
     let content = previousDiv.querySelector('.list-group').firstElementChild.textContent;
     if (hasNumber(content)) {
@@ -83,7 +82,7 @@ function addBackup() {
         newBackup.scrollIntoView({behavior: 'smooth'});
         notify(newBackup.querySelector('h2').textContent + " added", {type: 'success', delay: 1000, width: 'auto'});
     } else {
-        let title = previousDiv.querySelector('h2').textContent;
+        let title = previousDiv.querySelector('h2').textContent.bold();
         notify('Fill ' + title + ' before adding a backup', {type: 'danger', delay: 4000, width: 'auto'});
     }
     //Check to disable add backup button
