@@ -64,10 +64,6 @@ div.hidden {
     cursor: pointer;
 }
 
-.first-sub {
-    margin: 0 -5px 0 20px;
-}
-
 .remove-btn {
     width: 30px;
     float: right;

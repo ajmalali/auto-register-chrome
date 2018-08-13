@@ -52,25 +52,33 @@ function initHideButtons() {
 function initDeleteButtons() {
     let deleteButtons = document.querySelectorAll('.remove-btn');
     deleteButtons.forEach(function (button) {
-        button.addEventListener('click', function () {
-            let card = this.closest('div.card');
-            card.classList.add('remove-card-animate');
-            card.classList.remove('add-card-animate');
-            card.addEventListener('animationend', handleCardAnimation);
-        });
+        button.addEventListener('click', deleteButtonHandler)
     });
 }
 
-function handleCardAnimation(e) {
-    if(e.animationName === 'slide-down') {
+function deleteButtonHandler() {
+    let card = this.closest('div.card');
+    let ol = card.querySelector('ol.list-group');
+    // Do not hide the first submission
+    if (ol.id === 'sub-1') {
+        deleteList(ol.id, ol);
+        notify(card.querySelector('h2').textContent + " deleted", {type: 'danger', delay: 1000, width: 'auto'});
+    } else {
+        card.classList.add('remove-card-animate');
+        card.classList.remove('add-card-animate');
+        card.addEventListener('animationend', cardAnimationHandler);
+    }
+}
+
+function cardAnimationHandler(e) {
+    if (e.animationName === 'slide-down') {
         this.classList.add('hidden');
         this.classList.remove('remove-card-animate');
         let ol = this.querySelector('ol.list-group');
-        removeChildren(ol);
-        removeList(ol.id, ol);
+        deleteList(ol.id, ol);
         notify(this.querySelector('h2').textContent + " deleted", {type: 'danger', delay: 1000, width: 'auto'});
         updateAddButton();
-        this.removeEventListener('animationend', handleCardAnimation);
+        this.removeEventListener('animationend', cardAnimationHandler);
     }
 }
 
@@ -154,13 +162,14 @@ function removeFromList(parent, element, list, index) {
             parent.removeChild(element);
             notify(element.textContent + " removed", options);
             if (!parent.hasChildNodes()) {
-                removeList(list, parent);
+                deleteList(list, parent);
             }
         });
     });
 }
 
-function removeList(list, node) {
+function deleteList(list, node) {
+    removeChildren(node);
     chrome.storage.sync.remove(list);
     node.appendChild(createListItem('This list is empty'));
 }
