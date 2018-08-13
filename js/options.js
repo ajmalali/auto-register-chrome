@@ -54,20 +54,24 @@ function initDeleteButtons() {
     deleteButtons.forEach(function (button) {
         button.addEventListener('click', function () {
             let card = this.closest('div.card');
-            card.classList.add('remove');
-            card.addEventListener('animationend', function (e) {
-                if(e.animationName === 'slide-out') {
-                    this.classList.add('hidden');
-                    this.classList.remove('remove');
-                    let ol = card.querySelector('ol.list-group');
-                    removeChildren(ol);
-                    removeList(ol.id, ol);
-                    notify(this.querySelector('h2').textContent + " deleted", {type: 'danger', delay: 1000, width: 'auto'});
-                    updateAddButton();
-                }
-            });
+            card.classList.add('remove-card-animate');
+            card.classList.remove('add-card-animate');
+            card.addEventListener('animationend', handleCardAnimation);
         });
     });
+}
+
+function handleCardAnimation(e) {
+    if(e.animationName === 'slide-down') {
+        this.classList.add('hidden');
+        this.classList.remove('remove-card-animate');
+        let ol = this.querySelector('ol.list-group');
+        removeChildren(ol);
+        removeList(ol.id, ol);
+        notify(this.querySelector('h2').textContent + " deleted", {type: 'danger', delay: 1000, width: 'auto'});
+        updateAddButton();
+        this.removeEventListener('animationend', handleCardAnimation);
+    }
 }
 
 function addBackup() {
@@ -76,9 +80,10 @@ function addBackup() {
     let previousDiv = divs[divs.length - 1];
     let content = previousDiv.querySelector('.list-group').firstElementChild.textContent;
     if (hasNumber(content)) {
+        // get the first hidden div
         let newBackup = document.querySelector('.hidden');
         newBackup.classList.remove('hidden');
-        newBackup.classList.add('add');
+        newBackup.classList.add('add-card-animate');
         newBackup.scrollIntoView({behavior: 'smooth'});
         notify(newBackup.querySelector('h2').textContent + " added", {type: 'success', delay: 1000, width: 'auto'});
     } else {
@@ -97,7 +102,7 @@ function updateAddButton() {
 
 function createListItem(content) {
     let li = document.createElement('li');
-    li.setAttribute('class', 'list-group-item add');
+    li.setAttribute('class', 'list-group-item add-crn-animate');
     let text = document.createTextNode(content);
     li.appendChild(text);
     return li;
@@ -123,7 +128,7 @@ function addRemoveButton(element) {
     removeButton.setAttribute('src', 'icons/clear-button.png');
     removeButton.setAttribute('title', 'Remove CRN');
     removeButton.addEventListener('click', function () {
-        element.classList.add('remove');
+        element.classList.add('remove-crn-animate');
         // remove element after the animation ends
         element.addEventListener('animationend', function () {
             removeFromNode(element);

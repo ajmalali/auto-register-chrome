@@ -17,12 +17,20 @@ div.hidden {
     font-size: 15px;
 }
 
-.add {
+.add-crn-animate {
     animation: slide-in 0.4s ease;
 }
 
-.remove {
+.remove-crn-animate {
     animation: slide-out 0.3s ease forwards;
+}
+
+.add-card-animate {
+    animation: slide-up 0.4s ease;
+}
+
+.remove-card-animate {
+    animation: slide-down 0.3s ease forwards;
 }
 
 .add-btn {
@@ -82,6 +90,12 @@ h1.h1 {
     padding: 10px;
     font-size: 40px;
     font-weight: normal;
+}
+
+h3.modal-title {
+    font-size: 30px;
+    font-weight: normal;
+    text-transform: uppercase;
 }
 
 h2.display-3 {
@@ -250,5 +264,29 @@ img.social:hover {
     100% {
         opacity: 0;
         transform: translateX(50px);
+    }
+}
+
+@keyframes slide-up {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes slide-down {
+    0% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(50px);
     }
 }
