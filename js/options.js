@@ -62,7 +62,7 @@ function deleteButtonHandler() {
     // Do not hide the first submission
     if (ol.id === 'sub-1') {
         deleteList(ol.id, ol);
-        notify(card.querySelector('h2').textContent + " deleted", {type: 'danger', delay: 1000, width: 'auto'});
+        notify(card.querySelector('h2').textContent.bold() + " cleared", {type: 'danger', delay: 1000, width: 'auto'});
     } else {
         card.classList.add('remove-card-animate');
         card.classList.remove('add-card-animate');
