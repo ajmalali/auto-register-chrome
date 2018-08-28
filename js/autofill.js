@@ -2,7 +2,7 @@
 function executeScript() {
     console.log("Window loaded");
     /*
-    submit - To check how many times the page has been submitted
+    submit - To check how many times the page has been submitted/reloaded
      */
     chrome.storage.sync.get(function (storage) {
         console.log("In storage get");
@@ -31,7 +31,7 @@ function autoFill(list, submit) {
 function autoSubmit(submit) {
     submit++; // Update submit
     chrome.storage.sync.set({'submit': submit}, function () {
-        alert((submit - 1) + " times submitted");
+        // alert((submit - 1) + " times submitted");
         document.getElementById('REG_BTN').click();
     });
 }
