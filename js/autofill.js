@@ -31,12 +31,17 @@ function autoFill(list, submit) {
 function autoSubmit(submit) {
     submit++; // Update submit
     chrome.storage.sync.set({'submit': submit}, function () {
-        // alert((submit - 1) + " times submitted");
-        document.getElementById('REG_BTN').click();
+        $.bootstrapGrowl((submit - 1) + " times submitted");
+        document.getElementById('id____UID3').click();
     });
 }
 
 window.addEventListener('load', executeScript);
+
+window.addEventListener("keydown", function () {
+    $.bootstrapGrowl("testing");
+});
+
 
 // document.addEventListener("DOMContentLoaded", function() {
 //     var script = document.createElement('script');
