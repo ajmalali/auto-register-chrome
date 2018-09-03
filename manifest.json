@@ -16,7 +16,6 @@
     "scripts": ["js/background.js"],
     "persistent": false
   },
-  "web_accessible_resources": ["script.js"],
   "content_scripts": [
     {
       "matches": ["http://ssbweb.kfupm.edu.sa/PROD8/bwskfreg.P_AltPin"],
