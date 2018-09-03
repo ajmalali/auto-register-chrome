@@ -24,7 +24,6 @@
     }
   ],
   "permissions": [
-    "file:///Users/ajmal/Development/Web%20Dev/auto-register-chrome/test.html",
     "http://ssbweb.kfupm.edu.sa/PROD8/bwckcoms.P_Regs",
     "storage",
     "tabs"

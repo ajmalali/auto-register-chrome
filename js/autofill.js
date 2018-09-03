@@ -4,7 +4,6 @@ function executeAutofill() {
     submit - To check how many times the page has been submitted/reloaded
      */
     chrome.storage.sync.get(function (storage) {
-        console.log("In storage get");
         let limit = Object.keys(storage).length;
         let submit = storage.submit;
         if(submit <= limit) {
