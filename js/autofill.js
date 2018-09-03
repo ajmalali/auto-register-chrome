@@ -1,6 +1,5 @@
-// TODO: add registration website to manifest.json
-function executeScript() {
-    console.log("Window loaded");
+// TODO: remove console.log
+function executeAutofill() {
     /*
     submit - To check how many times the page has been submitted/reloaded
      */
@@ -31,13 +30,10 @@ function autoFill(list, submit) {
 function autoSubmit(submit) {
     submit++; // Update submit
     chrome.storage.sync.set({'submit': submit}, function () {
-        $.bootstrapGrowl((submit - 1) + " times submitted");
-        document.getElementById('id____UID3').click();
+        if(submit === 2) {
+            document.getElementById('id____UID3').click();
+        }
     });
 }
 
-executeScript();
-
-window.addEventListener("keydown", function () {
-    $.bootstrapGrowl("testing");
-});
+executeAutofill();

@@ -22,3 +22,22 @@ chrome.browserAction.onClicked.addListener(function () {
       }
    });
 });
+
+// Run autofill after the registration page updates
+chrome.tabs.onUpdated.addListener(runAutofill);
+
+function runAutofill(tabID, changeInfo, tab) {
+    let regURL = 'http://ssbweb.kfupm.edu.sa/PROD8/bwckcoms.P_Regs';
+    if(tab.url === regURL && tab.status === 'complete') {
+        chrome.tabs.executeScript({file: "js/autofill.js"});
+    }
+    console.log(tab);
+}
+
+//
+// chrome.tabs.onRemoved.addListener(function (tabId, removeInfo) {
+//
+//     chrome.tabs.onUpdated.removeListener(function () {
+//
+//     });
+// });
