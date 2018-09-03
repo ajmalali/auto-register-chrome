@@ -22,10 +22,6 @@
       "matches": ["http://ssbweb.kfupm.edu.sa/PROD8/bwskfreg.P_AltPin"],
       "js": ["js/autofill.js", "lib/jquery-3.3.1.min.js", "lib/bootstrap-4.1.2-dist/js/bootstrap.js", "lib/jquery.bootstrap-growl.min.js"],
       "css": ["lib/bootstrap-4.1.2-dist/css/bootstrap.css"]
-    },
-    {
-      "matches": ["http://ssbweb.kfupm.edu.sa/PROD8/bwskfreg.P_AltPin"],
-      "js": ["js/termAutoFill.js"]
     }
   ],
   "permissions": [

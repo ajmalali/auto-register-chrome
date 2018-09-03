@@ -36,16 +36,8 @@ function autoSubmit(submit) {
     });
 }
 
-window.addEventListener('load', executeScript);
+executeScript();
 
 window.addEventListener("keydown", function () {
     $.bootstrapGrowl("testing");
 });
-
-
-// document.addEventListener("DOMContentLoaded", function() {
-//     var script = document.createElement('script');
-//     script.src = chrome.extension.getURL('script.js');
-//     (document.head||document.documentElement).appendChild(script);
-//     script.parentNode.removeChild(script);
-// });
