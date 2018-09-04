@@ -35,4 +35,11 @@ function autoSubmit(submit) {
     });
 }
 
+window.addEventListener('keydown', function (e) {
+    // Submit if user presses enter key
+    if(e.keyCode === 13) {
+        document.getElementById('id____UID3').click();
+    }
+});
+
 executeAutofill();
