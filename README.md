@@ -2,7 +2,7 @@
 
 This chrome extension automates the KFUPM course registration process by auto-filling the provided CRNs.
 
-# Installation (for now)
+# Installation (until published on chrome store)
 
 1. Download repository zip file.
 2. Unzip the file.
