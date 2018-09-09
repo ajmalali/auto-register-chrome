@@ -1,7 +1,8 @@
 // TODO: remove console.log
+// TODO: send message after limit is reached to stop listening
 function executeAutofill() {
     /*
-    submit - To check how many times the page has been submitted/reloaded
+    submit - To check how many times the page has been submitted
      */
     chrome.storage.sync.get(function (storage) {
         let limit = Object.keys(storage).length;
