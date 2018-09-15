@@ -45,14 +45,18 @@ div.hidden {
 .hide-btn {
     width: 45px;
     float: right;
-    margin: 0 10px;
-    transform: translateY(-5px) rotateX(0deg);
+    margin: 0 15px;
+    transform: translateY(-3px) rotateX(0deg);
     transition: 0.2s ease;
-    opacity: 0.8;
+    opacity: 0.7;
 }
 
 .hide-btn:focus {
     outline: 0;
+}
+
+.hide-btn:hover {
+    opacity: 1;
 }
 
 .rotate {
@@ -68,10 +72,14 @@ div.hidden {
     width: 30px;
     float: right;
     margin: 5px auto;
+    opacity: 0.7;
+    transform: scale(0.95);
 }
 
 .remove-btn:hover {
     cursor: pointer;
+    opacity: 1;
+    transform: scale(1);
 }
 
 .remove-btn:focus {
