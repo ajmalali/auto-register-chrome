@@ -230,6 +230,9 @@ function clearAll() {
 
     // Set submit to 1
     chrome.storage.sync.set({'submit': 1});
+
+    //Scroll to top
+    window.scrollTo(0, 0);
 }
 
 function clearInput() {
