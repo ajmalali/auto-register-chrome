@@ -43,7 +43,8 @@ function initHideButtons() {
     hideButtons.forEach(function (button) {
         button.addEventListener('click', function () {
             let div = this.closest('div.card-body').querySelector('.crn-list');
-            div.classList.toggle('hide');
+            $(div).slideToggle(175, 'linear');
+            // div.classList.toggle('hide');
             this.classList.toggle('rotate');
         });
     });
