@@ -70,7 +70,7 @@ div.hidden {
     transition: 0.2s ease;
 }
 
-.remove-btn {
+.trash-btn {
     width: 45px;
     float: right;
     padding: 5px;
@@ -78,14 +78,14 @@ div.hidden {
     transition: 0.2s ease;
 }
 
-.remove-btn:hover {
+.trash-btn:hover {
     cursor: pointer;
     opacity: 1;
     background-color: rgba(0, 0, 0, 0.1);
     border-radius: 50%;
 }
 
-.remove-btn:focus {
+.trash-btn:focus {
     outline: 0;
 }
 

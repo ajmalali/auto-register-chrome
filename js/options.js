@@ -51,7 +51,7 @@ function initHideButtons() {
 }
 
 function initDeleteButtons() {
-    let deleteButtons = document.querySelectorAll('.remove-btn');
+    let deleteButtons = document.querySelectorAll('.trash-btn');
     deleteButtons.forEach(function (button) {
         button.addEventListener('click', deleteButtonHandler)
     });
