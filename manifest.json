@@ -5,7 +5,7 @@
   "description": "Automate your course registration process",
   "icons": {
     "128": "icons/ks_128.png",
-    "48": "icons/get_started48.png",
+    "48": "icons/ks_48.png",
     "32": "icons/ks_32.png",
     "16": "icons/ks_16.png"
   },
