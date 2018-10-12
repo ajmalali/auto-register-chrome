@@ -9,4 +9,4 @@ This chrome extension automates the KFUPM course registration process by auto-fi
 3. Go to Manage Chrome extensions in Google Chrome.
 4. Enable Developer Mode.
 5. Click on Load Unpacked.
-6. Select the unzipped file.
+6. Select the folder inside the unzipped file.
