@@ -8,7 +8,7 @@ When the Register classes page opens, the extension will automatically fill the 
 
 # Installation
 ### Method 1 (Fastest)
-Download the extension from <a href="https://chrome.google.com/webstore/detail/autoregister/cdnggghhipolhgompbcoofhkebpogdoe" target="_blank">Chrome Web Store</a>
+Download the extension from <a href="https://chrome.google.com/webstore/detail/autoregister/cdnggghhipolhgompbcoofhkebpogdoe" target="_blank">Chrome Web Store.</a>
 
 ### Method 2 (For testing latest builds)
 1. Download repository zip file.
