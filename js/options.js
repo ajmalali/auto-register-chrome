@@ -1,7 +1,6 @@
 function init() {
     // Display saved CRNs
     chrome.storage.sync.get(function (storage) {
-        console.log(storage);
         let list, node;
         let nodeList = Object.keys(storage);
         for (let i = 0; i < nodeList.length - 1; i++) {
@@ -313,6 +312,9 @@ function saveCRNS(list, node) {
     }
     // Clear input
     clearInput();
+
+    // Reset submit
+    chrome.storage.sync.set({'submit': 1});
 }
 
 init();

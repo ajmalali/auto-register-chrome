@@ -13,10 +13,10 @@ function openOptions() {
     chrome.tabs.query({}, function (tabs) {
         tabs.forEach(function (tab) {
             // Check if options page is present in the window
-            if(tab.url === optionsURL) {
+            if (tab.url === optionsURL) {
                 isInWindow = true;
                 // if present, check if active (tab selected)
-                if(!tab.active) {
+                if (!tab.active) {
                     // Set options page to active
                     chrome.tabs.update(tab.id, {active: true});
                     // Reset submit
@@ -25,7 +25,7 @@ function openOptions() {
             }
         });
         // Create new tab if not present
-        if(!isInWindow) {
+        if (!isInWindow) {
             chrome.tabs.create({url: optionsURL});
         }
     });
@@ -33,10 +33,9 @@ function openOptions() {
 
 function runAutofill(tabId, changeInfo, tab) {
     let regURL = 'http://ssbweb.kfupm.edu.sa/PROD8/bwckcoms.P_Regs';
-    if(tab.url === regURL && tab.status === 'complete') {
+    if (tab.url === regURL && tab.status === 'complete') {
         chrome.tabs.executeScript({file: "js/autofill.js"});
     }
-    console.log(tabId);
 }
 
 init();

@@ -14,13 +14,19 @@
   },
   "options_page": "options.html",
   "background": {
-    "scripts": ["js/background.js"],
+    "scripts": [
+      "js/background.js"
+    ],
     "persistent": false
   },
   "content_scripts": [
     {
-      "matches": ["http://ssbweb.kfupm.edu.sa/PROD8/bwskfreg.P_AltPin"],
-      "js": ["js/autofill.js"]
+      "matches": [
+        "http://ssbweb.kfupm.edu.sa/PROD8/bwskfreg.P_AltPin"
+      ],
+      "js": [
+        "js/autofill.js"
+      ]
     }
   ],
   "permissions": [
