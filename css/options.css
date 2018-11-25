@@ -181,6 +181,26 @@ img.social:hover {
     transition: 0.3s ease-in;
 }
 
+input[type=button].help {
+    background: none;
+    border: none;
+    margin: 20px;
+    position: fixed;
+    bottom: 0;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+input[type=button].help:hover {
+    color: #0255db;
+    cursor: pointer;
+}
+
+input[type=button].help:focus {
+    outline: 0;
+}
+
 #feedback {
     width: 30px;
 }
@@ -206,47 +226,53 @@ img.social:hover {
     width: 140px;
 }
 
-#help {
-    background: none;
-    border: none;
-    margin: 20px;
-    position: fixed;
-    bottom: 0;
-    font-family: inherit;
-    font-weight: 500;
-    font-size: 20px;
+#tips {
+    bottom: 30px;
 }
 
-#help:hover {
-    color: #0255db;
-    cursor: pointer;
-}
-
-#help:focus {
-    outline: 0;
-}
-
-#help-modal .modal-dialog {
+#tips-modal .modal-dialog {
     max-width: 600px;
     width: 45%;
 }
 
-#help-modal .modal-body {
+#tips-modal .modal-body {
     padding: 20px;
 }
 
-#help-modal img {
+#tips-modal p, li {
+    font-size: 105%;
+    padding: 5px;
+}
+
+#tips-modal p {
+    padding: 10px;
+}
+
+#tips-modal a {
+    text-decoration: none;
+}
+
+#instructions-modal .modal-dialog {
+    max-width: 600px;
+    width: 45%;
+}
+
+#instructions-modal .modal-body {
+    padding: 20px;
+}
+
+#instructions-modal img {
     display: block;
     width: 450px;
     margin: 15px auto;
     max-width: 100%;
 }
 
-#help-modal a {
+#instructions-modal a {
     text-decoration: none;
 }
 
-#help-modal p {
+#instructions-modal p {
     font-size: 105%;
     padding-left: 10px;
 }

@@ -28,13 +28,13 @@
             </div>
         </div>
         <!--How to use modal-->
-        <div class="modal fade" id="help-modal" tabindex="-1" role="dialog" aria-labelledby="help" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
+        <div class="modal fade" id="instructions-modal" tabindex="-1" role="dialog" aria-labelledby="instructions" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-help" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h3 class="modal-title">Instructions</h3>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body modal-body-help">
                         <h4 class="display-4">Step 1: Get your CRNs</h4>
                         <p>
                             Generate your schedule(s) from <a href="http://www.ikfupm.com/scheduler/index.php"
@@ -93,6 +93,40 @@
                 </div>
             </div>
         </div>
+
+        <!--Tips modal-->
+        <div class="modal fade" id="tips-modal" tabindex="-1" role="dialog" aria-labelledby="tips" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-help" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">TIPS & TRICKS</h3>
+                    </div>
+                    <div class="modal-body modal-body-help">
+                        <p class="alert alert-primary" role="alert">Following these tips can increase your chance of
+                            getting all of your desired courses and timings.</p>
+                        <hr>
+                        <ul>
+                            <li>Use a <strong>wired</strong> internet connection (via ethernet cable).</li>
+                            <li>Use a reasonably powerful machine. PCs are generally more powerful than laptops.</li>
+                            <li>Log in to KFUPM portal and select your terms at least <strong>15 mins.</strong> before registration.</li>
+                            <li>Make sure you are following the actual current time. You can check the time <a
+                                    href="https://time.is/" target="_blank">here</a>.</li>
+                            <li>Make sure your sections are open.</li>
+                            <li>Re-check your CRNs.</li>
+                        </ul>
+                        <hr>
+                        <p class="alert alert-danger"><strong>Important: </strong>Sometimes the registration website does not register all
+                            of the entered CRNs. This rarely happens, but if you find yourself in this situation, the extension
+                            provides you the ability to resubmit any submission.  <strong>Press 1</strong> to resubmit the
+                            <strong>First Submission</strong>, 2 to resubmit the Second Submission, and so on.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">CLOSE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!--Card div-->
         <div class="card">
             <div class="card-body">
@@ -203,7 +237,10 @@
         <p class="quote"><em>May the odds be ever in your favor</em></p>
 
         <!--Help button-->
-        <input type="button" id="help" value="HOW TO USE" data-toggle="modal" data-target="#help-modal">
+        <input type="button" id="instructions" class="help" value="HOW TO USE" data-toggle="modal" data-target="#instructions-modal">
+
+        <!--Tips button-->
+        <input type="button" id="tips" class="help" value="TIPS" data-toggle="modal" data-target="#tips-modal">
 
         <a href="https://goo.gl/forms/4wYDE53g5HvsFvpE2" target="_blank" title="Feedback">
             <img src="icons/feedback.png" class="social" id="feedback" alt="feedback icon">
