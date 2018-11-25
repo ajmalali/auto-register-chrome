@@ -7,7 +7,7 @@ This chrome extension automates the KFUPM course registration process by auto-fi
 When the Register classes page opens, the extension will automatically fill the First Submission CRNs and submit. After the page updates, the extension will now only fill the subsequent backup CRNs (if any).
 
 # Installation
-### Method 1 (Fastest)
+### Method 1
 Download the extension from <a href="https://chrome.google.com/webstore/detail/autoregister/cdnggghhipolhgompbcoofhkebpogdoe" target="_blank">Chrome Web Store.</a>
 
 ### Method 2 (For testing latest builds)
