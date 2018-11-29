@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Auto-Register",
-  "version": "2.1",
+  "version": "3.0",
   "description": "Automate your course registration process",
   "icons": {
     "128": "icons/ks_128.png",
