@@ -1,8 +1,9 @@
-html, body {
+body {
     margin: 0;
     padding: 0;
     height: 100%;
     font-family: 'Roboto', sans-serif !important;
+    background-color: rgba(248, 249, 250, 0.35) !important;
 }
 
 hr {
@@ -118,8 +119,8 @@ h4.display-4 {
 div.card {
     width: 550px;
     margin: 30px auto;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
-    border-radius: 2px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
 }
 
 div.card-body {
