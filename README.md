@@ -11,9 +11,9 @@ When the Register classes page opens, the extension will automatically fill the 
 Download the extension from <a href="https://chrome.google.com/webstore/detail/autoregister/cdnggghhipolhgompbcoofhkebpogdoe" target="_blank">Chrome Web Store.</a>
 
 ### Method 2 (For testing latest builds)
-1. Download repository zip file.
+1. Download (or clone) the repository zip file.
 2. Unzip the file.
-3. Go to Manage Chrome extensions in Google Chrome.
+3. Go to Manage Chrome extensions in Google Chrome settings.
 4. Enable Developer Mode.
 5. Click on Load Unpacked.
 6. Select the folder inside the unzipped file.
