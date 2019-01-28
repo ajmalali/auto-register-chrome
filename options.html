@@ -134,7 +134,11 @@
                 <h1 class="h1">Auto-register</h1>
 
                 <!--Input field and buttons-->
-                <input type="text" class="input-group" id="crn-input" placeholder="Enter/Paste CRNS">
+                <!--<input type="text" class="input-group" id="crn-input" placeholder="Enter/Paste CRNS">-->
+                <input type="text" class="border-effect input-group" id="crn-input" placeholder="Enter/Paste CRNS">
+                <span class="focus-border">
+            	    <i></i>
+                </span>
 
                 <!--Clear button-->
                 <input type="button" class="btn btn-outline-danger" id="clear" value="CLEAR ALL"
@@ -154,7 +158,7 @@
                 </h2>
                 <div class="crn-list">
                     <p class="caption">These will be submitted when the page loads</p>
-                    <ol class="list-group" id="sub-1">
+                    <ol class="list-group-flush" id="sub-1">
                         <li class="list-group-item">This list is empty</li>
                     </ol>
                     <input type="button" class="btn btn-outline-dark add-btn" value="ADD CRN">

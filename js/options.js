@@ -43,7 +43,6 @@ function initHideButtons() {
         button.addEventListener('click', function () {
             let div = this.closest('div.card-body').querySelector('.crn-list');
             $(div).slideToggle(175, 'linear');
-            // div.classList.toggle('hide');
             this.classList.toggle('rotate');
         });
     });
@@ -58,7 +57,7 @@ function initDeleteButtons() {
 
 function deleteButtonHandler() {
     let card = this.closest('div.card');
-    let ol = card.querySelector('ol.list-group');
+    let ol = card.querySelector('ol.list-group-flush');
     // Do not hide the first submission
     if (ol.id === 'sub-1') {
         deleteList(ol.id, ol);
