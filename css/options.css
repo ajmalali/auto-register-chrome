@@ -3,6 +3,7 @@ body {
     padding: 0;
     height: 100%;
     font-family: 'Roboto', sans-serif !important;
+    color: #738f93;
     background-color: rgba(248, 249, 250, 0.35) !important;
 }
 
@@ -14,8 +15,11 @@ div.hidden {
     display: none;
 }
 
-.caption {
-    font-size: 15px;
+p.caption {
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #738f93;
+    font-weight: 400;
 }
 
 .add-crn-animate {
@@ -97,7 +101,8 @@ h1.h1 {
     margin: 0 10px 10px 10px;
     padding: 10px;
     font-size: 40px;
-    font-weight: normal;
+    font-weight: 500;
+    color: #39424e;
 }
 
 h3.modal-title {
@@ -109,6 +114,8 @@ h3.modal-title {
 h2.display-3 {
     font-size: 30px;
     margin-bottom: 0;
+    color: #39424e;
+    font-weight: 500;
 }
 
 h4.display-4 {
@@ -119,7 +126,7 @@ h4.display-4 {
 div.card {
     width: 550px;
     margin: 30px auto;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 16px 0 rgba(115, 143, 147, .3);
     border-radius: 5px;
 }
 
