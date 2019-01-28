@@ -73,7 +73,7 @@ function cardAnimationHandler(e) {
     if (e.animationName === 'slide-down') {
         this.classList.add('hidden');
         this.classList.remove('remove-card-animate');
-        let ol = this.querySelector('ol.list-group');
+        let ol = this.querySelector('ol.list-group-flush');
         deleteList(ol.id, ol);
         notify(this.querySelector('h2').textContent + " deleted", {type: 'danger', delay: 1000, width: 'auto'});
         updateAddButton();
@@ -85,7 +85,7 @@ function addBackup() {
     // Check if previous nodes have children
     let divs = document.querySelectorAll('div.card:not(.hidden)');
     let previousDiv = divs[divs.length - 1];
-    let content = previousDiv.querySelector('.list-group').firstElementChild.textContent;
+    let content = previousDiv.querySelector('.list-group-flush').firstElementChild.textContent;
     if (hasNumber(content)) {
         // get the first hidden div
         let newBackup = document.querySelector('.hidden');
