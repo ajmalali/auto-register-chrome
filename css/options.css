@@ -171,7 +171,6 @@ img.social {
 
 img.social:hover {
     opacity: 1;
-    transform: scale(1.1);
     transition: 0.3s ease-in;
 }
 
