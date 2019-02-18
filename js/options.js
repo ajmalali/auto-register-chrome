@@ -241,45 +241,38 @@ function notify(message, options) {
     $.bootstrapGrowl(message, options);
 }
 
-function isValid(value) {
-    let valid = false;
-    let regex = /[a-zA-Z!@#$%^&*`.]+/;
+function validateCRNS(CRNinput) {
     let invalidOption = {type: 'danger', delay: 2000, width: 'auto'};
     let noInputOption = {type: 'info', delay: 2000, width: 'auto'};
-
+    // let regex = /[a-zA-Z!@#$%^&*`.]+/;
+    let regex = /\d{5}/;
+    let isValid = regex.test(CRNinput);
     // check if there is input
-    if (value) {
-        // check if the string contains one or more of the above characters
-        // (using regex will slow down performance a bit)
-        if (!regex.test(value)) {
-            valid = true;
-        } else {
+    if (CRNinput) {
+        if (!isValid) {
             // Invalid input notification
             clearInput();
             notify('Please enter a valid CRN', invalidOption);
-            valid = false;
         }
     } else {
         // No input notification
         notify('Please enter a CRN', noInputOption);
-        valid = false;
     }
 
-    return valid;
+    return isValid;
 }
 
-// TODO: update max list length
 function addToList(oldList = [], newList) {
     let addedOption = {type: 'success', delay: 1000};
     let invalidOption = {type: 'danger', delay: 3000, width: 'auto'};
-    let maxLength = 10;
+    let maxCRNLimit = 10;
 
     for (let i = 0; i < newList.length; i++) {
-        if (oldList.length < maxLength) {
+        if (oldList.length < maxCRNLimit) {
             oldList.push(newList[i]);
             notify(newList[i] + ' added', addedOption);
         } else {
-            notify('You cannot register more than ' + maxLength + ' CRNs', invalidOption);
+            notify('You cannot register more than ' + maxCRNLimit + ' CRNs', invalidOption);
             return oldList;
         }
     }
@@ -291,9 +284,11 @@ function addToList(oldList = [], newList) {
 function saveCRNS(list, node) {
     let input = document.getElementById('crn-input').value;
 
-    if (isValid(input)) {
-        // match everything that is not whitespace and convert to array
-        let newList = input.match(/\S+/g);
+    if (validateCRNS(input)) {
+        // globally match 5 digits in sequence
+        let regex = /\d{5}/g;
+        // let newList = input.match(/\S+/g);
+        let newList = input.match(regex);
 
         chrome.storage.sync.get(list, function (storage) {
             // update existing list if any
