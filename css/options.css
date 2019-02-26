@@ -262,7 +262,8 @@ input[type=button].help:focus {
 }
 
 #instructions-modal .modal-dialog {
-    max-width: 600px;
+    max-width: 650px;
+    min-width: 500px;
     width: 45%;
 }
 
