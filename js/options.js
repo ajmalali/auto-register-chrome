@@ -245,7 +245,7 @@ function validateCRNS(CRNinput) {
     let invalidOption = {type: 'danger', delay: 2000, width: 'auto'};
     let noInputOption = {type: 'info', delay: 2000, width: 'auto'};
     // let regex = /[a-zA-Z!@#$%^&*`.]+/;
-    let regex = /\d{5}/;
+    let regex = /\d{5}\s/;
     let isValid = regex.test(CRNinput);
     // check if there is input
     if (CRNinput) {
@@ -286,7 +286,7 @@ function saveCRNS(list, node) {
 
     if (validateCRNS(input)) {
         // globally match 5 digits in sequence
-        let regex = /\d{5}/g;
+        let regex = /\d{5}\s/g;
         // let newList = input.match(/\S+/g);
         let newList = input.match(regex);
 
