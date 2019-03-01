@@ -1,14 +1,14 @@
 // TODO: send message after limit is reached to stop listening
 function executeAutofill() {
     /*
-    submit - To check how many times the page has been submitted
+     Submit - number of times registration page has to be submitted
      */
     chrome.storage.sync.get(function (storage) {
         let limit = Object.keys(storage).length;
-        let submit = storage.submit;
-        if (submit <= limit) {
-            let list = storage['sub-' + submit];
-            autoFill(list, submit, false);
+        let submissionNumber = storage.submit;
+        if (submissionNumber <= limit) {
+            let crnList = storage['sub-' + submissionNumber];
+            autoFill(crnList, submissionNumber, false);
         }
     });
 }
@@ -43,25 +43,25 @@ function clearEntries() {
     }
 }
 
-function resubmit(key) {
+function resubmit(submissionNumber) {
     chrome.storage.sync.get(function (storage) {
-        let list = storage['sub-' + key];
+        let crnList = storage['sub-' + submissionNumber];
         clearEntries();
-        autoFill(list, key, true);
+        autoFill(crnList, submissionNumber, true);
     });
 }
 
 window.addEventListener('keydown', function (e) {
-    let key = e.keyCode;
+    let pressedKey = e.keyCode;
 
     // Resubmit a particular submission
-    if (key >= 49 && key <= 53) {
-        key -= 48;
-        resubmit(key)
+    if (pressedKey >= 49 && pressedKey <= 53) {
+        pressedKey -= 48;
+        resubmit(pressedKey)
     }
 
     // Submit if user presses enter key
-    if (key === 13) {
+    if (pressedKey === 13) {
         document.getElementById('id____UID3').click();
     }
 });

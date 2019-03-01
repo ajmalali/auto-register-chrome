@@ -1,29 +1,20 @@
+//TODO: REFACTOR EVERYTHING
 function init() {
-    // Display saved CRNs
-    chrome.storage.sync.get(function (storage) {
-        let list, node;
-        let nodeList = Object.keys(storage);
-        for (let i = 0; i < nodeList.length - 1; i++) {
-            list = storage[nodeList[i]];
-            node = document.getElementById(nodeList[i]);
-            node.closest('div.card').classList.remove('hidden');
-            displayCRNS(list, node);
-        }
-    });
+    displaySavedCRNS();
 
     // Submit - number of times registration page has to be submitted
     chrome.storage.sync.set({'submit': 1});
 
-    // Add CRN button
+    // Handler for ADD CRN button
     let addButtons = document.querySelectorAll('.add-btn');
     addButtons.forEach(function (button) {
         button.addEventListener('click', function () {
-            let ol = button.previousElementSibling;
+            let ol = this.previousElementSibling;
             saveCRNS(ol.id, ol);
         });
     });
 
-    // Add backups
+    // Handler for ADD BACKUP button
     document.getElementById('add-backup').addEventListener('click', addBackup);
 
     // Initialize hide/show buttons
@@ -34,6 +25,19 @@ function init() {
 
     // Clear all for modal button
     document.querySelector('#confirm-modal button.btn-outline-danger').addEventListener('click', clearAll);
+}
+
+function displaySavedCRNS() {
+    chrome.storage.sync.get(function (storage) {
+        let list, node;
+        let nodeList = Object.keys(storage);
+        for (let i = 0; i < nodeList.length - 1; i++) {
+            list = storage[nodeList[i]];
+            node = document.getElementById(nodeList[i]);
+            node.closest('div.card').classList.remove('hidden');
+            displayCRNS(list, node);
+        }
+    });
 }
 
 function initHideButtons() {
