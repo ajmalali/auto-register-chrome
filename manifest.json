@@ -22,8 +22,7 @@
   "content_scripts": [
     {
       "matches": [
-        "http://ssbweb.kfupm.edu.sa/PROD8/bwskfreg.P_AltPin",
-        "file:///Users/ajmal/Development/auto-register-chrome/test.html"
+        "http://ssbweb.kfupm.edu.sa/PROD8/bwskfreg.P_AltPin"
       ],
       "js": [
         "js/autofill.js"
