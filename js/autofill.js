@@ -1,7 +1,7 @@
 // TODO: send message after limit is reached to stop listening
 function executeAutofill() {
     /*
-     Submit - number of times registration page has to be submitted
+     submissionNumber - number of times registration page has to be submitted
      */
     chrome.storage.sync.get(function (storage) {
         let limit = Object.keys(storage).length;
@@ -13,23 +13,23 @@ function executeAutofill() {
     });
 }
 
-function autoFill(list, submit, resubmit) {
+function autoFill(crnList, submissionNumber, resubmit) {
     // Check if list is not undefined and not empty
-    if (list && list.length > 0) {
+    if (crnList && crnList.length > 0) {
         let id = "";
-        for (let i = 0; i < list.length; i++) {
+        for (let i = 0; i < crnList.length; i++) {
             id = 'crn_id' + (i + 1);
-            document.getElementById(id).value = list[i];
+            document.getElementById(id).value = crnList[i];
         }
 
-        autoSubmit(submit, resubmit);
+        autoSubmit(submissionNumber, resubmit);
     }
 }
 
-function autoSubmit(submit, resubmit) {
-    submit++; // Update submit
-    chrome.storage.sync.set({'submit': submit}, function () {
-        if (submit === 2 || resubmit) {
+function autoSubmit(submissionNumber, resubmit) {
+    submissionNumber++; // Update submit
+    chrome.storage.sync.set({'submit': submissionNumber}, function () {
+        if (submissionNumber === 2 || resubmit) {
             document.getElementById('id____UID3').click();
         }
     });
@@ -39,7 +39,10 @@ function clearEntries() {
     let id = "";
     for (let i = 1; i <= 10; i++) {
         id = 'crn_id' + i;
-        document.getElementById(id).value = "";
+        let value = document.getElementById(id).value;
+        if (value) {
+            document.getElementById(id).value = "";
+        }
     }
 }
 
