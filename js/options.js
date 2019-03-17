@@ -289,11 +289,8 @@ function saveCRNS(list, node) {
     let input = document.getElementById('crn-input').value;
 
     if (validateCRNS(input)) {
-        // globally match 5 digits in sequence
-        let regex = /\d{5}\s?/g;
-        // let newList = input.match(/\S+/g);
-        let newList = input.match(regex);
-
+        // let regex = /\d{5}\s?/g;
+        let newList = input.match(/\S+/g);
         chrome.storage.sync.get(list, function (storage) {
             // update existing list if any
             if (storage[list] && storage[list].length > 0) {

@@ -19,7 +19,7 @@ function autoFill(crnList, submissionNumber, resubmit) {
         let id = "";
         for (let i = 0; i < crnList.length; i++) {
             id = 'crn_id' + (i + 1);
-            document.getElementById(id).value = crnList[i];
+            document.getElementById(id).value = crnList[i].trim();
         }
 
         autoSubmit(submissionNumber, resubmit);
@@ -60,7 +60,7 @@ window.addEventListener('keydown', function (e) {
     // Resubmit a particular submission
     if (pressedKey >= 49 && pressedKey <= 53) {
         pressedKey -= 48;
-        resubmit(pressedKey)
+        resubmit(pressedKey);
     }
 
     // Submit if user presses enter key
