@@ -19,7 +19,7 @@ function autoFill(crnList, submissionNumber, resubmit) {
         let id = "";
         for (let i = 0; i < crnList.length; i++) {
             id = 'crn_id' + (i + 1);
-            document.getElementById(id).value = crnList[i].trim();
+            document.getElementById(id).value = crnList[i];
         }
 
         autoSubmit(submissionNumber, resubmit);
