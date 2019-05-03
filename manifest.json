@@ -22,7 +22,7 @@
   "content_scripts": [
     {
       "matches": [
-        "http://ssbweb.kfupm.edu.sa/PROD8/bwskfreg.P_AltPin"
+        "http://ssbweb.kfupm.edu.sa/PROD8/bwckcoms.P_Regs"
       ],
       "js": [
         "js/autofill.js"
