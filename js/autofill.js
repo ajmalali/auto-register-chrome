@@ -1,5 +1,5 @@
 // TODO: send message after limit is reached to stop listening
-function executeAutofill() {
+function runAutofill() {
     /*
      submissionNumber - number of times registration page has to be submitted
      */
@@ -69,4 +69,4 @@ window.addEventListener('keydown', function (e) {
     }
 });
 
-executeAutofill();
+runAutofill();
