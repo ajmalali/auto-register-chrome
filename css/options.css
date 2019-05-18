@@ -133,6 +133,7 @@ div.card {
 
 div.card-body {
     padding: 25px;
+    color: black;
 }
 
 p.quote {
@@ -181,7 +182,7 @@ input[type=button].help {
     position: fixed;
     bottom: 0;
     font-family: inherit;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 20px;
 }
 
@@ -234,6 +235,10 @@ input[type=button].help:focus {
     float: right;
 }
 
+#confirm-modal {
+    color: #000;
+}
+
 #confirm-modal .modal-body {
     font-size: 110%;
 }
@@ -250,10 +255,12 @@ input[type=button].help:focus {
 #tips-modal .modal-dialog {
     max-width: 600px;
     width: 45%;
+    color: black;
 }
 
 #tips-modal .modal-body {
     padding: 20px;
+    font-weight: 400;
 }
 
 #tips-modal p, li {
@@ -273,6 +280,7 @@ input[type=button].help:focus {
     max-width: 650px;
     min-width: 500px;
     width: 45%;
+    color: black;
 }
 
 #instructions-modal .modal-body {
