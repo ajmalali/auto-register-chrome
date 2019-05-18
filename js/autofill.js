@@ -54,19 +54,33 @@ function resubmit(submissionNumber) {
     });
 }
 
-window.addEventListener('keydown', function (e) {
-    let pressedKey = e.keyCode;
+function initListeners() {
+    window.addEventListener('keydown', function (e) {
+        let pressedKey = e.keyCode;
 
-    // Resubmit a particular submission
-    if (pressedKey >= 49 && pressedKey <= 53) {
-        pressedKey -= 48;
-        resubmit(pressedKey);
+        // Resubmit a particular submission
+        if (pressedKey >= 49 && pressedKey <= 53) {
+            pressedKey -= 48;
+            resubmit(pressedKey);
+        }
+
+        // Submit if user presses enter key
+        if (pressedKey === 13) {
+            document.getElementById('id____UID3').click();
+        }
+    });
+
+    //  This is done when selecting the term. Reset 'submit' whenever the term is changed.
+    const continueButton = document.getElementById('term-go');
+    console.log(continueButton);
+    if (continueButton) {
+        continueButton.addEventListener('click', function () {
+            chrome.storage.sync.set({'submit': 1}, function () {
+                console.log("reset");
+            });
+        });
     }
+}
 
-    // Submit if user presses enter key
-    if (pressedKey === 13) {
-        document.getElementById('id____UID3').click();
-    }
-});
-
+initListeners();
 runAutofill();

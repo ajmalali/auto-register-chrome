@@ -22,7 +22,7 @@
   "content_scripts": [
     {
       "matches": [
-        "https://banner9-registration.kfupm.edu.sa/StudentRegistrationSsb/ssb/term/termSelection?mode=registration"
+        "https://banner9-registration.kfupm.edu.sa/*"
       ],
       "js": [
         "js/autofill.js"
@@ -30,7 +30,7 @@
     }
   ],
   "permissions": [
-    "https://banner9-registration.kfupm.edu.sa/StudentRegistrationSsb/ssb/term/termSelection?mode=registration",
+    "https://banner9-registration.kfupm.edu.sa/*",
     "storage",
     "tabs"
   ]
