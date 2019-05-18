@@ -56,28 +56,23 @@ function resubmit(submissionNumber) {
 
 function initListeners() {
     window.addEventListener('keydown', function (e) {
-        let pressedKey = e.keyCode;
-
+        let pressedKey =  e.key;
         // Resubmit a particular submission
-        if (pressedKey >= 49 && pressedKey <= 53) {
-            pressedKey -= 48;
+        if (Number(pressedKey) >= 1 && Number(pressedKey) <= 5) {
             resubmit(pressedKey);
         }
 
         // Submit if user presses enter key
-        if (pressedKey === 13) {
+        if (pressedKey === 'Enter') {
             document.getElementById('id____UID3').click();
         }
     });
 
     //  This is done when selecting the term. Reset 'submit' whenever the term is changed.
     const continueButton = document.getElementById('term-go');
-    console.log(continueButton);
     if (continueButton) {
         continueButton.addEventListener('click', function () {
-            chrome.storage.sync.set({'submit': 1}, function () {
-                console.log("reset");
-            });
+            chrome.storage.sync.set({'submit': 1});
         });
     }
 }
