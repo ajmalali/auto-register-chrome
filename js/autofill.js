@@ -7,6 +7,7 @@ function runAutofill() {
         let limit = Object.keys(storage).length;
         let submissionNumber = storage.submit;
         if (submissionNumber <= limit) {
+            document.getElementById('enterCRNs-tab').click();
             let crnList = storage['sub-' + submissionNumber];
             autoFill(crnList, submissionNumber, false);
         }
@@ -18,21 +19,26 @@ function autoFill(crnList, submissionNumber, resubmit) {
     if (crnList && crnList.length > 0) {
         let id = "";
         for (let i = 0; i < crnList.length; i++) {
-            id = 'crn_id' + (i + 1);
+            id = 'txt_crn' + (i + 1);
             document.getElementById(id).value = crnList[i];
+            document.getElementById('addAnotherCRN').click();
         }
 
-        autoSubmit(submissionNumber, resubmit);
+        document.getElementById('addCRNbutton').click();
+        setTimeout(function () {
+            autoSubmit(submissionNumber, resubmit);
+        }, 1000)
     }
 }
 
 function autoSubmit(submissionNumber, resubmit) {
-    submissionNumber++; // Update submit
-    chrome.storage.sync.set({'submit': submissionNumber}, function () {
-        if (submissionNumber === 2 || resubmit) {
-            document.getElementById('id____UID3').click();
-        }
-    });
+    document.getElementById('saveButton').click();
+    //submissionNumber++; // Update submit
+    // chrome.storage.sync.set({'submit': submissionNumber}, function () {
+    //     if (submissionNumber === 2 || resubmit) {
+    //         document.getElementById('id____UID3').click();
+    //     }
+    // });
 }
 
 function clearEntries() {
@@ -77,5 +83,5 @@ function initListeners() {
     }
 }
 
-initListeners();
+//initListeners();
 runAutofill();

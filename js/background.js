@@ -3,7 +3,7 @@ function init() {
     chrome.browserAction.onClicked.addListener(openOptions);
 
     // Run autofill after the registration page updates
-    chrome.tabs.onUpdated.addListener(runAutofill);
+    //chrome.tabs.onUpdated.addListener(runAutofill);
 }
 
 function openOptions() {
