@@ -7,9 +7,12 @@ function runAutofill() {
         let limit = Object.keys(storage).length;
         let submissionNumber = storage.submit;
         if (submissionNumber <= limit) {
+            // Click ENTER CRNs Tab
             document.getElementById('enterCRNs-tab').click();
             let crnList = storage['sub-' + submissionNumber];
             autoFill(crnList, submissionNumber, false);
+        } else {
+            // Send message to background.js
         }
     });
 }
@@ -24,7 +27,9 @@ function autoFill(crnList, submissionNumber, resubmit) {
             document.getElementById('addAnotherCRN').click();
         }
 
+        // Click Add to Summary button
         document.getElementById('addCRNbutton').click();
+        // Submit after 1 second to ensure all CRNs are added
         setTimeout(function () {
             autoSubmit(submissionNumber, resubmit);
         }, 1000)
@@ -32,45 +37,20 @@ function autoFill(crnList, submissionNumber, resubmit) {
 }
 
 function autoSubmit(submissionNumber, resubmit) {
-    document.getElementById('saveButton').click();
-    //submissionNumber++; // Update submit
-    // chrome.storage.sync.set({'submit': submissionNumber}, function () {
-    //     if (submissionNumber === 2 || resubmit) {
-    //         document.getElementById('id____UID3').click();
-    //     }
-    // });
-}
-
-function clearEntries() {
-    let id = "";
-    for (let i = 1; i <= 10; i++) {
-        id = 'crn_id' + i;
-        let value = document.getElementById(id).value;
-        if (value) {
-            document.getElementById(id).value = "";
+    submissionNumber++; // Update submit
+    chrome.storage.sync.set({'submit': submissionNumber}, function () {
+        if (submissionNumber === 2 || resubmit) {
+            document.getElementById('saveButton').click();
         }
-    }
-}
-
-function resubmit(submissionNumber) {
-    chrome.storage.sync.get(function (storage) {
-        let crnList = storage['sub-' + submissionNumber];
-        clearEntries();
-        autoFill(crnList, submissionNumber, true);
     });
 }
 
 function initListeners() {
     window.addEventListener('keydown', function (e) {
         let pressedKey =  e.key;
-        // Resubmit a particular submission
-        if (Number(pressedKey) >= 1 && Number(pressedKey) <= 5) {
-            resubmit(pressedKey);
-        }
-
         // Submit if user presses enter key
         if (pressedKey === 'Enter') {
-            document.getElementById('id____UID3').click();
+            document.getElementById('saveButton').click();
         }
     });
 
@@ -83,5 +63,5 @@ function initListeners() {
     }
 }
 
-//initListeners();
+initListeners();
 runAutofill();
