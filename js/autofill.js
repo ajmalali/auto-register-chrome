@@ -37,12 +37,13 @@ function autoFill(crnList, submissionNumber, resubmit) {
 }
 
 function autoSubmit(submissionNumber, resubmit) {
-    submissionNumber++; // Update submit
-    chrome.storage.sync.set({'submit': submissionNumber}, function () {
-        if (submissionNumber === 2 || resubmit) {
-            document.getElementById('saveButton').click();
-        }
-    });
+    document.getElementById('saveButton').click();
+    // submissionNumber++; // Update submit
+    // chrome.storage.sync.set({'submit': submissionNumber}, function () {
+    //     if (submissionNumber === 2 || resubmit) {
+    //         document.getElementById('saveButton').click();
+    //     }
+    // });
 }
 
 function initListeners() {
@@ -53,14 +54,6 @@ function initListeners() {
             document.getElementById('saveButton').click();
         }
     });
-
-    //  This is done when selecting the term. Reset 'submit' whenever the term is changed.
-    const continueButton = document.getElementById('term-go');
-    if (continueButton) {
-        continueButton.addEventListener('click', function () {
-            chrome.storage.sync.set({'submit': 1});
-        });
-    }
 }
 
 initListeners();

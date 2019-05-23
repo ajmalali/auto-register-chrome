@@ -101,7 +101,7 @@ function addBackup() {
         let title = previousDiv.querySelector('h2').textContent.bold();
         notify('Fill ' + title + ' before adding a backup', {type: 'danger', delay: 4000, width: 'auto'});
     }
-    //Check to disable add backup button
+    // Check to disable add backup button
     updateAddButton();
 }
 
@@ -208,7 +208,7 @@ function clearAll() {
     // Clear input
     clearInput();
 
-    // Clear list group
+    // Clear all submissions
     let nodeID, node;
     for (let i = 1; i <= 5; i++) {
         nodeID = 'sub-' + i;

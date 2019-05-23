@@ -89,6 +89,9 @@
                             extension will now <strong>only fill</strong> any subsequent backup CRNs. You may also use
                             the 'Enter' key to submit.
                         </p>
+                        <div class="alert alert-warning" role="alert">
+                            The extension is partially updated to work for the new registration system but with limited features. The extension will automatically add your CRNs to summary and try to submit. if it doesn't submit, you have to click the submit button (bottom right corner) manually. All of your courses should have "Registered" status.
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-primary" data-dismiss="modal">CLOSE</button>
@@ -142,7 +145,7 @@
                 <input type="button" class="btn btn-outline-danger" id="clear" value="CLEAR ALL"
                        data-toggle="modal" data-target="#confirm-modal">
                 <!--Add more backups-->
-                <input type="button" class="btn btn-outline-primary" id="add-backup" value="ADD BACKUP">
+                <input type="button" class="btn btn-outline-primary" id="add-backup" value="ADD BACKUP" disabled>
             </div>
         </div>
 
@@ -162,10 +165,6 @@
                     <input type="button" class="btn btn-dark add-btn" value="ADD CRN">
                 </div>
             </div>
-        </div>
-
-        <div class="alert alert-warning" style=" width: 550px; margin: 10px auto" role="alert">
-            The extension is partially updated to work for the new registration system but with limited features. The extension will automatically add your CRNs to summary and try to submit. if it doesn't submit, you have to click the submit button (bottom right corner) manually. All of your courses should have "Registered" status.
         </div>
 
         <!--Second Submission-->

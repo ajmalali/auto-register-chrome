@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Auto-Register",
-  "version": "3.6.2",
+  "version": "3.6.3",
   "description": "Automate your course registration process",
   "icons": {
     "128": "icons/ks_128.png",
@@ -21,12 +21,12 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "https://banner9-registration.kfupm.edu.sa/*"
-      ],
-      "js": [
-        "js/autofill.js"
-      ]
+      "matches": ["https://banner9-registration.kfupm.edu.sa/*"],
+      "js": ["js/autofill.js"]
+    },
+    {
+      "matches": ["https://banner9-registration.kfupm.edu.sa/StudentRegistrationSsb/ssb/term/termSelection?mode=registration"],
+      "js": ["js/termSelection.js"]
     }
   ],
   "permissions": [
