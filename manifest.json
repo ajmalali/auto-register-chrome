@@ -21,7 +21,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://banner9-registration.kfupm.edu.sa/*"],
+      "matches": ["https://banner9-registration.kfupm.edu.sa/StudentRegistrationSsb/ssb/classRegistration/classRegistration"],
       "js": ["js/autofill.js"]
     },
     {

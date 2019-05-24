@@ -223,7 +223,7 @@ function clearAll() {
     }
 
     // Enable add more backups button
-    document.getElementById('add-backup').disabled = false;
+    // document.getElementById('add-backup').disabled = false;
 
     // Clear chrome storage
     chrome.storage.sync.clear(function () {
