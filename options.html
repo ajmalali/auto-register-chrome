@@ -1,264 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Auto-Register</title>
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="lib/bootstrap-4.1.2-dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/options.css">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700" rel="stylesheet">
-        <link rel="stylesheet" href="lib/animate.min.css">
-    </head>
-    <body>
-        <!-- Clear all modal -->
-        <div class="modal fade" id="confirm-modal" tabindex="-1" role="dialog" aria-labelledby="clearAll"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Confirmation</h4>
-                    </div>
-                    <div class="modal-body">
-                        Are you sure you want to clear everything?
-                    </div>
-                    <div class="modal-footer">
-                        <!--add clear all method-->
-                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">NO</button>
-                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">YES</button>
-                    </div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Auto-Register</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="lib/bootstrap-4.1.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/options.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="lib/animate.min.css">
+</head>
+<body>
+<!-- Clear all modal -->
+<div class="modal fade" id="confirm-modal" tabindex="-1" role="dialog" aria-labelledby="clearAll"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to clear everything?
+            </div>
+            <div class="modal-footer">
+                <!--add clear all method-->
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">NO</button>
+                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">YES</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--How to use modal-->
+<div class="modal fade" id="instructions-modal" tabindex="-1" role="dialog" aria-labelledby="instructions-btn"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-help" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Instructions</h3>
+            </div>
+            <div class="modal-body modal-body-help">
+                <h4 class="display-4">Step 1: Get your CRNs</h4>
+                <p>
+                    Generate your schedule(s) from <a href="http://www.ikfupm.com/scheduler/index.php"
+                                                      target="_blank">KFUPM
+                    Scheduler</a> and copy your CRNs.
+                </p>
+                <img src="images/CopyCRN.png" alt="Copy CRN screenshot">
+                <p class="alert alert-primary" role="alert"><strong>Note: </strong>Getting CRNs from KFUPM
+                    scheduler only makes the process easier for you.
+                    You may get your CRNs however you like.</p>
+                <hr>
+                <h4 class="display-4">Step 2: Enter your CRNs</h4>
+                <p>
+                    Paste your CRNs into the input box (no editing required). If you did not use
+                    KFUPM scheduler, you can add each CRN one by one or all together,
+                    separated by a space.
+                </p>
+                <hr>
+                <h4 class="display-4">Step 3: Add your CRNs</h4>
+                <p>
+                    Add your CRNs to <strong>First Choice</strong> by clicking on the <strong>ADD CRN</strong>
+                    button.
+                    You can have a maximum of 10 CRNs per submission.
+
+                    <img src="images/add-crn-demo.gif" alt="Add CRN demo">
+                </p>
+                <hr>
+                <h4 class="display-4">Step 4: Add a backup (Optional)</h4>
+                <p>
+                    The extension also provides you the option of adding backup CRNs. After clicking on the
+                    <strong>ADD BACKUP</strong> button, a new submission appears. Add your backup CRNs to this
+                    submission.
+                    You can have a maximum of <strong>4</strong> backups.
+                </p>
+                <hr>
+                <h4 class="display-4">Step 5: All set</h4>
+                <p>
+                    When it's time for registration, all you have to do is go to the Register
+                    classes (Add/Drop) page in KFUPM Portal, submit the term when
+                    your registration opens. The extension will handle the rest.
+                </p>
+                <hr>
+                <h4 class="display-4">What does the extension do?</h4>
+                <p>
+                    When the Register classes page opens, the extension will automatically <strong>fill</strong>
+                    the
+                    <strong>First Choice</strong> CRNs and <strong>submit</strong>. After the page updates, the
+                    extension will now <strong>only fill</strong> any subsequent backup CRNs. You may also use
+                    the 'Enter' key to submit.
+                </p>
+                <div class="alert alert-warning" role="alert">
+                    The extension is partially updated to work for the new registration system but with limited
+                    features. The extension will automatically add your CRNs to summary and try to submit. if it doesn't
+                    submit, you have to click the submit button (bottom right corner) manually. All of your courses
+                    should have "Registered" status.
                 </div>
             </div>
-        </div>
-        <!--How to use modal-->
-        <div class="modal fade" id="instructions-modal" tabindex="-1" role="dialog" aria-labelledby="instructions-btn"
-             aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-help" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title">Instructions</h3>
-                    </div>
-                    <div class="modal-body modal-body-help">
-                        <h4 class="display-4">Step 1: Get your CRNs</h4>
-                        <p>
-                            Generate your schedule(s) from <a href="http://www.ikfupm.com/scheduler/index.php"
-                                                              target="_blank">KFUPM
-                            Scheduler</a> and copy your CRNs.
-                        </p>
-                        <img src="images/CopyCRN.png" alt="Copy CRN screenshot">
-                        <p class="alert alert-primary" role="alert"><strong>Note: </strong>Getting CRNs from KFUPM
-                            scheduler only makes the process easier for you.
-                            You may get your CRNs however you like.</p>
-                        <hr>
-                        <h4 class="display-4">Step 2: Enter your CRNs</h4>
-                        <p>
-                            Paste your CRNs into the input box (no editing required). If you did not use
-                            KFUPM scheduler, you can add each CRN one by one or all together,
-                            separated by a space.
-                        </p>
-                        <hr>
-                        <h4 class="display-4">Step 3: Add your CRNs</h4>
-                        <p>
-                            Add your CRNs to <strong>First Choice</strong> by clicking on the <strong>ADD CRN</strong>
-                            button.
-                            You can have a maximum of 10 CRNs per submission.
-
-                            <img src="images/add-crn-demo.gif" alt="Add CRN demo">
-                        </p>
-                        <hr>
-                        <h4 class="display-4">Step 4: Add a backup (Optional)</h4>
-                        <p>
-                            The extension also provides you the option of adding backup CRNs. After clicking on the
-                            <strong>ADD BACKUP</strong> button, a new submission appears. Add your backup CRNs to this
-                            submission.
-                            You can have a maximum of <strong>4</strong> backups.
-                        </p>
-                        <hr>
-                        <h4 class="display-4">Step 5: All set</h4>
-                        <p>
-                            When it's time for registration, all you have to do is go to the Register
-                            classes (Add/Drop) page in KFUPM Portal, submit the term when
-                            your registration opens. The extension will handle the rest.
-                        </p>
-                        <hr>
-                        <h4 class="display-4">What does the extension do?</h4>
-                        <p>
-                            When the Register classes page opens, the extension will automatically <strong>fill</strong>
-                            the
-                            <strong>First Choice</strong> CRNs and <strong>submit</strong>. After the page updates, the
-                            extension will now <strong>only fill</strong> any subsequent backup CRNs. You may also use
-                            the 'Enter' key to submit.
-                        </p>
-                        <div class="alert alert-warning" role="alert">
-                            The extension is partially updated to work for the new registration system but with limited features. The extension will automatically add your CRNs to summary and try to submit. if it doesn't submit, you have to click the submit button (bottom right corner) manually. All of your courses should have "Registered" status.
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">CLOSE</button>
-                    </div>
-                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">CLOSE</button>
             </div>
         </div>
-        <!--Tips modal-->
-        <div class="modal fade" id="tips-modal" tabindex="-1" role="dialog" aria-labelledby="tips" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-help" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title">TIPS & TRICKS</h3>
-                    </div>
-                    <div class="modal-body modal-body-help">
-                        <p class="alert alert-primary" role="alert">Following these tips can increase your chance of
-                            getting all of your desired courses and timings.</p>
-                        <hr>
-                        <ul>
-                            <li>Use a <strong>wired</strong> internet connection (via ethernet cable).</li>
-                            <li>If that's not possible, try to have a strong wireless connection.</li>
-                            <li>Use a reasonably powerful machine. PCs are generally more powerful than laptops.</li>
-                            <li>Log in to KFUPM portal and select your terms at least <strong>15 mins.</strong> before
-                                registration.
-                            </li>
-                            <li>Make sure you are following the actual current <a href="https://time.is/"
-                                                                                  target="_blank">time</a>.
-                            </li>
-                            <li>Add backup CRNs for sections that close quickly.</li>
-                            <li>Rate this extension.</li>
-                        </ul>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">CLOSE</button>
-                    </div>
-                </div>
+    </div>
+</div>
+<!--Tips modal-->
+<div class="modal fade" id="tips-modal" tabindex="-1" role="dialog" aria-labelledby="tips" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-help" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">TIPS & TRICKS</h3>
+            </div>
+            <div class="modal-body modal-body-help">
+                <p class="alert alert-primary" role="alert">Following these tips can increase your chance of
+                    getting all of your desired courses and timings.</p>
+                <hr>
+                <ul>
+                    <li>Use a <strong>wired</strong> internet connection (via ethernet cable).</li>
+                    <li>If that's not possible, try to have a strong wireless connection.</li>
+                    <li>Use a reasonably powerful machine. PCs are generally more powerful than laptops.</li>
+                    <li>Log in to KFUPM portal and select your terms at least <strong>15 mins.</strong> before
+                        registration.
+                    </li>
+                    <li>Make sure you are following the actual current <a href="https://time.is/"
+                                                                          target="_blank">time</a>.
+                    </li>
+                    <li>Add backup CRNs for sections that close quickly.</li>
+                    <li>Rate this extension.</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">CLOSE</button>
             </div>
         </div>
+    </div>
+</div>
 
-    <div class="container">
-        <!--Card div-->
-        <div class="card">
-            <div class="card-body">
-                <!--Title-->
-                <h1 class="h1">Auto-register</h1>
+<div class="container">
+    <!--Card div-->
+    <div class="card">
+        <div class="card-body">
+            <!--Title-->
+            <h1 class="h1">Auto-register</h1>
 
-                <!--Input field and buttons-->
-                <input type="text" class="input-group" id="crn-input" placeholder="Enter/Paste CRNs here">
+            <!--Input field and buttons-->
+            <input type="text" class="input-group" id="crn-input" placeholder="Enter/Paste CRNs here">
 
-                <!--Clear button-->
-                <input type="button" class="btn btn-outline-danger" id="clear" value="CLEAR ALL"
-                       data-toggle="modal" data-target="#confirm-modal">
-                <!--Add more backups-->
-                <input type="button" class="btn btn-outline-primary" id="add-backup" value="ADD BACKUP" disabled>
-            </div>
+            <!--Clear button-->
+            <input type="button" class="btn btn-outline-danger" id="clear" value="CLEAR ALL"
+                   data-toggle="modal" data-target="#confirm-modal">
+            <!--Add more backups-->
+            <input type="button" class="btn btn-outline-primary" id="add-backup" value="ADD BACKUP" disabled>
         </div>
-
-        <!--First Submission-->
-        <div class="card">
-            <div class="card-body">
-                <h2 class="display-3">
-                    First Choice
-                    <span><input class="trash-btn" src="icons/trash.png" type="image"></span>
-                    <span><input class="hide-btn" src="icons/hide-show.png" type="image" value="HIDE"></span>
-                </h2>
-                <div class="crn-list">
-                    <p class="caption">These will be submitted when the page loads</p>
-                    <ol class="list-group-flush" id="sub-1">
-                        <li class="list-group-item">Then add your CRNs here</li>
-                    </ol>
-                    <input type="button" class="btn btn-dark add-btn" value="ADD CRN">
-                </div>
-            </div>
-        </div>
-
-        <!--Second Submission-->
-        <div class="card hidden">
-            <div class="card-body">
-                <h2 class="display-3">
-                    Backup #1
-                    <span><input class="trash-btn" src="icons/trash.png" type="image"></span>
-                    <span><input class="hide-btn" src="icons/hide-show.png" type="image" value="HIDE"></span>
-                </h2>
-                <div class="crn-list">
-                    <p class="caption">These will be filled after first choice</p>
-                    <ol class="list-group-flush" id="sub-2">
-                        <li class="list-group-item">This list is empty</li>
-                    </ol>
-                    <input type="button" class="btn btn-dark add-btn" value="ADD CRN">
-                </div>
-            </div>
-        </div>
-
-        <!--Third Submission-->
-        <div class="card hidden">
-            <div class="card-body">
-                <h2 class="display-3">
-                    Backup #2
-                    <span><input class="trash-btn" src="icons/trash.png" type="image"></span>
-                    <span><input class="hide-btn" src="icons/hide-show.png" type="image" value="HIDE"></span>
-                </h2>
-                <div class="crn-list">
-                    <p class="caption">These will be filled after Backup #1</p>
-                    <ol class="list-group-flush" id="sub-3">
-                        <li class="list-group-item">This list is empty</li>
-                    </ol>
-                    <input type="button" class="btn btn-dark add-btn" value="ADD CRN">
-                </div>
-            </div>
-        </div>
-
-        <!--Fourth Submission-->
-        <div class="card hidden">
-            <div class="card-body">
-                <h2 class="display-3">
-                    Backup #3
-                    <span><input class="trash-btn" src="icons/trash.png" type="image"></span>
-                    <span><input class="hide-btn" src="icons/hide-show.png" type="image" value="HIDE"></span>
-                </h2>
-                <div class="crn-list">
-                    <p class="caption">These will be filled after the Backup #2</p>
-                    <ol class="list-group-flush" id="sub-4">
-                        <li class="list-group-item">This list is empty</li>
-                    </ol>
-                    <input type="button" class="btn btn-dark add-btn" value="ADD CRN">
-                </div>
-            </div>
-        </div>
-
-        <!--Fifth Submission-->
-        <div class="card hidden">
-            <div class="card-body">
-                <h2 class="display-3">
-                    Backup #4
-                    <span><input class="trash-btn" src="icons/trash.png" type="image"></span>
-                    <span><input class="hide-btn" src="icons/hide-show.png" type="image" value="HIDE"></span>
-                </h2>
-                <div class="crn-list">
-                    <p class="caption">These will be filled after Backup #3</p>
-                    <ol class="list-group-flush" id="sub-5">
-                        <li class="list-group-item">This list is empty</li>
-                    </ol>
-                    <input type="button" class="btn btn-dark add-btn" value="ADD CRN">
-                </div>
-            </div>
-        </div>
-
-        <p class="quote"><em>May the odds be ever in your favor</em></p>
     </div>
 
-        <!--HOW TO USE button-->
-        <input type="button" id="instructions-btn" class="help animated tada" value="HOW TO USE" data-toggle="modal"
-               data-target="#instructions-modal">
+    <!--First Submission-->
+    <div class="card">
+        <div class="card-body">
+            <h2 class="display-3">
+                First Choice
+                <span><input class="trash-btn" src="icons/trash.png" type="image"></span>
+                <span><input class="hide-btn" src="icons/hide-show.png" type="image" value="HIDE"></span>
+            </h2>
+            <div class="crn-list">
+                <p class="caption">These will be submitted when the page loads</p>
+                <ol class="list-group-flush" id="sub-1">
+                    <li class="list-group-item">Then add your CRNs here</li>
+                </ol>
+                <input type="button" class="btn btn-dark add-btn" value="ADD CRN">
+            </div>
+        </div>
+    </div>
 
-        <!--Tips button-->
-        <input type="button" id="tips" class="help" value="TIPS" data-toggle="modal" data-target="#tips-modal">
+    <!--Second Submission-->
+    <div class="card hidden">
+        <div class="card-body">
+            <h2 class="display-3">
+                Backup #1
+                <span><input class="trash-btn" src="icons/trash.png" type="image"></span>
+                <span><input class="hide-btn" src="icons/hide-show.png" type="image" value="HIDE"></span>
+            </h2>
+            <div class="crn-list">
+                <p class="caption">These will be filled after first choice</p>
+                <ol class="list-group-flush" id="sub-2">
+                    <li class="list-group-item">This list is empty</li>
+                </ol>
+                <input type="button" class="btn btn-dark add-btn" value="ADD CRN">
+            </div>
+        </div>
+    </div>
 
-        <a href="https://goo.gl/forms/4wYDE53g5HvsFvpE2" target="_blank" title="Feedback">
-            <img src="icons/feedback.png" class="social" id="feedback" alt="feedback icon">
-        </a>
-        <a href="https://github.com/ajmalali/auto-register-chrome" target="_blank" title="Github page">
-            <img src="icons/github.png" class="social" id="github" alt="github icon">
-        </a>
+    <!--Third Submission-->
+    <div class="card hidden">
+        <div class="card-body">
+            <h2 class="display-3">
+                Backup #2
+                <span><input class="trash-btn" src="icons/trash.png" type="image"></span>
+                <span><input class="hide-btn" src="icons/hide-show.png" type="image" value="HIDE"></span>
+            </h2>
+            <div class="crn-list">
+                <p class="caption">These will be filled after Backup #1</p>
+                <ol class="list-group-flush" id="sub-3">
+                    <li class="list-group-item">This list is empty</li>
+                </ol>
+                <input type="button" class="btn btn-dark add-btn" value="ADD CRN">
+            </div>
+        </div>
+    </div>
 
-        <script type="text/javascript" src="lib/jquery-3.3.1.min.js"></script>
-        <script type="text/javascript" src="lib/bootstrap-4.1.2-dist/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="lib/jquery.bootstrap-growl.min.js"></script>
-        <script type="text/javascript" src="js/options.js"></script>
-    </body>
+    <!--Fourth Submission-->
+    <div class="card hidden">
+        <div class="card-body">
+            <h2 class="display-3">
+                Backup #3
+                <span><input class="trash-btn" src="icons/trash.png" type="image"></span>
+                <span><input class="hide-btn" src="icons/hide-show.png" type="image" value="HIDE"></span>
+            </h2>
+            <div class="crn-list">
+                <p class="caption">These will be filled after the Backup #2</p>
+                <ol class="list-group-flush" id="sub-4">
+                    <li class="list-group-item">This list is empty</li>
+                </ol>
+                <input type="button" class="btn btn-dark add-btn" value="ADD CRN">
+            </div>
+        </div>
+    </div>
+
+    <!--Fifth Submission-->
+    <div class="card hidden">
+        <div class="card-body">
+            <h2 class="display-3">
+                Backup #4
+                <span><input class="trash-btn" src="icons/trash.png" type="image"></span>
+                <span><input class="hide-btn" src="icons/hide-show.png" type="image" value="HIDE"></span>
+            </h2>
+            <div class="crn-list">
+                <p class="caption">These will be filled after Backup #3</p>
+                <ol class="list-group-flush" id="sub-5">
+                    <li class="list-group-item">This list is empty</li>
+                </ol>
+                <input type="button" class="btn btn-dark add-btn" value="ADD CRN">
+            </div>
+        </div>
+    </div>
+
+    <p class="quote"><em>May the odds be ever in your favor</em></p>
+</div>
+
+<!--HOW TO USE button-->
+<input type="button" id="instructions-btn" class="help animated tada" value="HOW TO USE" data-toggle="modal"
+       data-target="#instructions-modal">
+
+<!--Tips button-->
+<input type="button" id="tips" class="help" value="TIPS" data-toggle="modal" data-target="#tips-modal">
+
+<a href="https://goo.gl/forms/4wYDE53g5HvsFvpE2" target="_blank" title="Feedback">
+    <img src="icons/feedback.png" class="social" id="feedback" alt="feedback icon">
+</a>
+<a href="https://github.com/ajmalali/auto-register-chrome" target="_blank" title="Github page">
+    <img src="icons/github.png" class="social" id="github" alt="github icon">
+</a>
+
+<script type="text/javascript" src="lib/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="lib/bootstrap-4.1.2-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="lib/jquery.bootstrap-growl.min.js"></script>
+<script type="text/javascript" src="js/options.js"></script>
+</body>
 </html>
