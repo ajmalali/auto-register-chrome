@@ -20,19 +20,29 @@ function runAutofill() {
 function autoFill(crnList, submissionNumber, resubmit) {
     // Check if list is not undefined and not empty
     if (crnList && crnList.length > 0) {
-        let id = "";
         for (let i = 0; i < crnList.length; i++) {
-            id = 'txt_crn' + (i + 1);
-            document.getElementById(id).value = crnList[i];
-            document.getElementById('addAnotherCRN').click();
+            document.getElementById('txt_crn' + (i + 1)).value = crnList[i]
+            if (i < crnList.length - 1)
+                document.getElementById('addAnotherCRN').click()
         }
-
+  
+        const MutationObserver = window.MutationObserver
+                              || window.WebKitMutationObserver
+                              || window.MozMutationObserver
+        
+        // Submit after all crns loaded
+        const button = document.getElementById('saveButton')
+        const observer = new MutationObserver(mutations => {
+            mutations.forEach(mutation => {
+                if (mutation.attributeName === "disabled") {
+                    button.click()
+                    observer.disconnect()
+                }
+            })
+        })
+        observer.observe(button, { attributes: true })
         // Click Add to Summary button
-        document.getElementById('addCRNbutton').click();
-        // Submit after 1 second to ensure all CRNs are added
-        setTimeout(function () {
-            autoSubmit(submissionNumber, resubmit);
-        }, 1000)
+        document.getElementById('addCRNbutton').click()
     }
 }
 
