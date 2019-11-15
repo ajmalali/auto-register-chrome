@@ -7,8 +7,6 @@ function runAutofill() {
         let limit = Object.keys(storage).length;
         let submissionNumber = storage.submit;
         if (submissionNumber <= limit) {
-            // Click ENTER CRNs Tab
-            document.getElementById('enterCRNs-tab').click();
             let crnList = storage['sub-' + submissionNumber];
             autoFill(crnList, submissionNumber, false);
         } else {
@@ -20,51 +18,57 @@ function runAutofill() {
 function autoFill(crnList, submissionNumber, resubmit) {
     // Check if list is not undefined and not empty
     if (crnList && crnList.length > 0) {
+        let id = "";
         for (let i = 0; i < crnList.length; i++) {
-            document.getElementById('txt_crn' + (i + 1)).value = crnList[i]
-            if (i < crnList.length - 1)
-                document.getElementById('addAnotherCRN').click()
+            id = 'crn_id' + (i + 1);
+            document.getElementById(id).value = crnList[i];
         }
-  
-        const MutationObserver = window.MutationObserver
-                              || window.WebKitMutationObserver
-                              || window.MozMutationObserver
-        
-        // Submit after all crns loaded
-        const button = document.getElementById('saveButton')
-        const observer = new MutationObserver(mutations => {
-            mutations.forEach(mutation => {
-                if (mutation.attributeName === "disabled") {
-                    button.click()
-                    observer.disconnect()
-                }
-            })
-        })
-        observer.observe(button, { attributes: true })
-        // Click Add to Summary button
-        document.getElementById('addCRNbutton').click()
+
+        autoSubmit(submissionNumber, resubmit);
     }
 }
 
 function autoSubmit(submissionNumber, resubmit) {
-    document.getElementById('saveButton').click();
-    // submissionNumber++; // Update submit
-    // chrome.storage.sync.set({'submit': submissionNumber}, function () {
-    //     if (submissionNumber === 2 || resubmit) {
-    //         document.getElementById('saveButton').click();
-    //     }
-    // });
-}
-
-function initListeners() {
-    window.addEventListener('keydown', function (e) {
-        let pressedKey =  e.key;
-        // Submit if user presses enter key
-        if (pressedKey === 'Enter') {
-            document.getElementById('saveButton').click();
+    submissionNumber++; // Update submit
+    chrome.storage.sync.set({ 'submit': submissionNumber }, function () {
+        if (submissionNumber === 2 || resubmit) {
+            document.getElementById('id____UID2').click();
         }
     });
 }
 
-initListeners();
+function clearEntries() {
+    let id = "";
+    for (let i = 1; i <= 10; i++) {
+        id = 'crn_id' + i;
+        let value = document.getElementById(id).value;
+        if (value) {
+            document.getElementById(id).value = "";
+        }
+    }
+}
+
+function resubmit(submissionNumber) {
+    chrome.storage.sync.get(function (storage) {
+        let crnList = storage['sub-' + submissionNumber];
+        clearEntries();
+        autoFill(crnList, submissionNumber, true);
+    });
+}
+
+window.addEventListener('keydown', function (e) {
+    let pressedKey = e.keyCode;
+
+    // Resubmit a particular submission
+    // if (pressedKey >= 49 && pressedKey <= 53) {
+    //     pressedKey -= 48;
+    //     resubmit(pressedKey);
+    // }
+
+    // Submit if user presses enter key
+    if (pressedKey === 13) {
+        document.getElementById('id____UID2').click();
+    }
+});
+
 runAutofill();
